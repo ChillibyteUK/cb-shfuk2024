@@ -80,14 +80,15 @@ $img = get_the_post_thumbnail(get_the_ID(), 'full', array('class' => 'blog__imag
     </div>
     <section class="related py-5">
         <div class="container-xl">
-            <h3><span>Related</span> Guides</h3>
+            <h3><span>Related</span> Insights</h3>
             <div class="row g-2">
                 <?php
                 $cats = get_the_category();
                 $ids = wp_list_pluck($cats, 'term_id');
                 $r = new WP_Query(array(
                     'category__in' => $ids,
-                    'posts_per_page' => 3
+                    'posts_per_page' => 3,
+                    'post__not_in' => array(get_the_ID())
                 ));
                 while ($r->have_posts()) {
                     $r->the_post();

@@ -1,0 +1,235 @@
+.reading {
+    font-size: var(--fs-200);
+    font-style: italic;
+    margin-bottom: 0;
+}
+
+.news_card {
+    background-color: var(--col-white);
+    display: grid;
+    text-decoration: none;
+    height: 100%;
+    grid-template-rows: auto 1fr;
+    &:hover {
+        .news_card__link {
+            color: var(--col-yellow-400);
+        }
+    }
+    &__image {
+        aspect-ratio: 3 / 1;
+        width: 100%;
+        object-fit: cover;
+    }
+    &__inner {
+        padding: 2rem;
+        display: grid;
+        @media (min-width:992px) {
+            grid-template-rows: minmax(5rem,auto) 1.5rem minmax(8rem,auto) 2rem;
+        }
+    }
+    h3 {
+        font-size: var(--fs-600);
+        color: var(--col-blue-400);
+        margin-bottom: 0;
+    }
+    &__excerpt {
+        font-size: var(--fs-300);
+        margin-bottom: 1rem;
+    }
+    &__link {
+        position: relative;
+        align-self: self-end;
+        font-weight: var(--fw-600);
+        color: var(--col-blue-400);
+        display: flex;
+        transition: color var(--transition);
+        &::before {
+            content: '';
+            background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_2' data-name='Layer 2' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10.78 21.55'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B fill: %230073ca; stroke-width: 0px; %7D %3C/style%3E%3C/defs%3E%3Cg id='NAV_BAR' data-name='NAV BAR'%3E%3Cpolygon class='cls-1' points='0 7.61 3.17 10.78 0 13.95 0 21.55 10.78 10.78 0 0 0 7.61'/%3E%3C/g%3E%3C/svg%3E");
+            width: 10px;
+            height: 22px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-right: 0.5rem;
+        }
+    }
+}
+
+// single posts
+.blog {
+
+    &__image {
+        width: 100%;
+        height: 600px !important;
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 600px;
+        }
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background-color: hsla(0 0 0 / 0.4);
+        }
+    }
+
+
+    &__hero {
+        position: relative;
+        isolation: isolate;
+        z-index: 0;
+        display: grid;
+        grid-template-rows: 3rem calc(300px - 3rem);
+
+        .breadcrumbs {
+            color: var(--col-white);
+            align-self: center;
+            p {
+                margin-bottom: 0;
+            }
+            a {
+                color: var(--col-white);
+            }
+        }
+
+
+    }
+
+    &__main {
+        z-index: 1;
+        position: relative;
+        .col-lg-9 {
+            background-color: var(--col-white);
+        }
+    }
+
+    &__title {
+        display: grid;
+        align-items: center;
+        h1 {
+            font-size: var(--fs-900);
+            color: var(--col-white);
+            max-width: 960px;
+        }
+    }
+
+    .single_cta {
+        background-color: var(--col-grey-400);
+        padding: 1rem 2rem;
+        @media (min-width:992px) {
+            input[type=text] {
+                width: 100%;
+            }
+            .button {
+                padding: 0.75rem 1rem;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    }
+
+    .sidebar-container {
+        position: sticky;
+        top: 1rem;
+
+    }
+    .sidebar {
+
+        background-color: var(--col-yellow-400);
+        padding: 1.5rem 1rem 1rem 3rem;
+        margin-bottom: 1rem;
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0.5rem;
+            left: 0;
+            width: 30px;
+            height: 55px;
+            background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_2' data-name='Layer 2' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 27.25 54.5'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B fill: %23fff; stroke-width: 0px; %7D %3C/style%3E%3C/defs%3E%3Cg id='NAV_BAR' data-name='NAV BAR'%3E%3Cpolygon class='cls-1' points='0 19.24 8.01 27.25 0 35.26 0 54.5 27.25 27.25 0 0 0 19.24'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        .h5 {
+            color:var(--col-blue-400);
+            font-size: var(--fs-500);
+            font-weight: var(--fw-600);
+        }
+
+        li {
+            list-style: none;
+            padding-inline-start: 0;
+            font-size: 0.889rem;
+            margin-bottom: 0.5rem;
+            a {
+                text-decoration: none;
+                color: var(--col-black);
+                transition: color var(--transition);
+                font-weight: var(--fw-600);
+                &:hover {
+                    color: var(--col-blue-400);
+                }
+            }
+        }
+    }
+
+    h2, .h2 {
+        font-size: var(--fs-700);
+    }
+    h3, .h3 {
+        font-size: var(--fs-600);
+    }
+    h4, .h4 {
+        font-size: var(--fs-500);
+    }
+}
+
+.navigation {
+    width: fit-content;
+    ul{
+        list-style: none;
+        display: flex;
+        padding-inline-start: 0;
+    }
+    li {
+        
+        border: 1px solid var(--col-primary);
+        border-right: none;
+        background-color: white;
+        &.active {
+            background-color: var(--col-primary);
+            a {
+                cursor: default;
+                font-weight: 600;
+            }
+        }
+        &:first-of-type {
+            border-top-left-radius: 0.25rem;
+            border-bottom-left-radius: 0.25rem;
+        }
+        &:last-of-type {
+            border-top-right-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
+            border-right: 1px solid var(--col-primary);
+        }
+    }
+
+    a {
+        display: block;
+        text-decoration: none;
+        color: black;
+        padding: 0.5rem 1rem;
+    }
+
+}
+
+.related {
+    background-color: var(--col-grey-400);
+}

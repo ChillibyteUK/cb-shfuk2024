@@ -1,0 +1,17 @@
+// Create the responsive width mixin
+@mixin responsive-width($name, $value) {
+    @each $breakpoint, $breakpoint-width in $grid-breakpoints {
+      .w-#{$breakpoint}-#{$name} {
+        @include media-breakpoint-up($breakpoint) {
+          width: $value !important;
+        }
+      }
+    }
+}
+  
+// generate width classes
+@include responsive-width(25, 25%);
+@include responsive-width(50, 50%);
+@include responsive-width(75, 75%);
+@include responsive-width(100, 100%);
+

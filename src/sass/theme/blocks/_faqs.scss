@@ -1,0 +1,53 @@
+.faqs {
+
+    .accordion-item,
+    .accordion-button {
+        border-top-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+        border: none;
+        margin-bottom: 0.25rem;
+        box-shadow: none;
+    }
+
+    .accordion-button {
+        position: relative;
+        padding-right: 1.2em;
+        margin-bottom: 0;
+        cursor: pointer;
+        font-size: var(--fs-500);
+        color: var(--col-blue-400);
+        background-color: var(--col-grey-400);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &.collapsed::after {
+            transform: scaleY(1);
+        }
+
+        &::after {
+            content: "";
+            display: block;
+            width: 32px;
+            height: 16px;
+            background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 31.48 15.74'%3E%3Cpolygon fill='%230073ca' points='11.11 15.74 15.74 11.11 20.36 15.74 31.48 15.74 15.74 0 0 15.74 11.11 15.74'/%3E%3C/svg%3E");
+            transform: scaleY(-1);
+            transform-origin: center;
+            transition: transform var(--transition);
+        }
+    }
+
+    @media screen and (max-width:992px) {
+        .accordion-button::after {
+            display: none;
+        }
+    }
+    .answer {
+        background-color: var(--col-grey-400);
+        p {
+            margin-bottom: 0.5rem;
+        }
+    }
+}

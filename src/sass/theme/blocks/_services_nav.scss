@@ -1,0 +1,161 @@
+.services_nav {
+    h2 {
+        text-align: center;
+        span {
+            // border-bottom: 0.2em solid var(--col-blue-400);
+            text-decoration: underline var(--col-blue-400) solid 0.2em;
+        }
+    }
+
+    &__grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        & > * {
+            flex: 1 1 415px; /* Allow the items to grow and shrink, with a base width of 215px */
+
+            @media (min-width: 576px) {
+                max-width: calc(50% - 1rem); /* Two items per row at min-width 576px */
+            }
+            
+            @media (min-width: 768px) {
+                max-width: calc(33.3333% - 1rem); /* Three items per row at min-width 768px */
+            }
+        }
+        &.two_cols > * {
+            flex: 1 1 415px; /* Allow the items to grow and shrink, with a base width of 215px */
+            max-width: 100%;
+
+            @media (min-width: 576px) {
+                max-width: calc(50% - 1rem); /* Two items per row at min-width 576px */
+            }
+        }
+    }
+
+    &__card {
+        background-color: var(--col-white);
+        border-right: 1px solid;
+        border-bottom: 1px solid;
+        border-left: 1px solid;
+        border-color:  var(--col-grey-600);
+        position: relative;
+        text-decoration: none;
+        transition: border-color var(--transition);
+        &::before {
+            content: "";
+            background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_2' data-name='Layer 2' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 386 51.17'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B fill: %23fff; %7D .cls-1, .cls-2 %7B stroke-width: 0px; %7D .cls-2 %7B fill: %23ffe41f; %7D %3C/style%3E%3C/defs%3E%3Cg id='NAV_BAR' data-name='NAV BAR'%3E%3Cg%3E%3Crect class='cls-2' y='.17' width='386' height='51'/%3E%3Cg%3E%3Crect class='cls-1' x='277.12' y='40.15' width='10.22' height='11.02'/%3E%3Cpath class='cls-1' d='m264.87,38.11h10.21v-11.13c-5.71.52-10.19,5.29-10.21,11.13Z'/%3E%3Crect class='cls-1' x='264.87' y='40.15' width='10.21' height='11.02'/%3E%3Cpath class='cls-1' d='m277.12,26.98v11.13h10.21c-.02-5.83-4.5-10.62-10.21-11.13Z'/%3E%3Cpolygon class='cls-1' points='272.17 6 226.99 51.17 219.09 51.17 268.22 2.04 272.17 6'/%3E%3Cpath class='cls-1' d='m386,46.32v4.85h-62.72L272.11,0h18.32c.71,0,1.37.06,1.98.17,2.13.37,3.65,1.31,4.61,2.27.97.97,31.11,31.12,43.88,43.88h45.1Z'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: top right;
+            width: 100%;
+            height: 52px;
+            position: absolute;
+            transition: background-image var(--transition);
+        }
+
+        &:not(.services_nav__card--button) {
+            &:hover {
+                border-color: var(--col-blue-400);
+                &::before {
+                    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_2' data-name='Layer 2' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 386 51.17'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B fill: %23fff; %7D .cls-1, .cls-2 %7B stroke-width: 0px; %7D .cls-2 %7B fill: %230073cc; %7D %3C/style%3E%3C/defs%3E%3Cg id='NAV_BAR' data-name='NAV BAR'%3E%3Cg%3E%3Crect class='cls-2' y='.17' width='386' height='51'/%3E%3Cg%3E%3Crect class='cls-1' x='277.12' y='40.15' width='10.22' height='11.02'/%3E%3Cpath class='cls-1' d='m264.87,38.11h10.21v-11.13c-5.71.52-10.19,5.29-10.21,11.13Z'/%3E%3Crect class='cls-1' x='264.87' y='40.15' width='10.21' height='11.02'/%3E%3Cpath class='cls-1' d='m277.12,26.98v11.13h10.21c-.02-5.83-4.5-10.62-10.21-11.13Z'/%3E%3Cpolygon class='cls-1' points='272.17 6 226.99 51.17 219.09 51.17 268.22 2.04 272.17 6'/%3E%3Cpath class='cls-1' d='m386,46.32v4.85h-62.72L272.11,0h18.32c.71,0,1.37.06,1.98.17,2.13.37,3.65,1.31,4.61,2.27.97.97,31.11,31.12,43.88,43.88h45.1Z'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+                }
+            }
+        }
+        
+    }
+
+    .services_nav__card--button {
+        .button {
+            justify-self: center;
+            margin-top: 1rem;
+        }
+    }
+    h3 {
+        font-size: var(--fs-600);
+        color: var(--col-blue-400);
+    }
+    &__inner {
+        // display: flex;
+        // flex-wrap: wrap;
+        // align-content: space-around;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        align-items: stretch;
+        height: 100%;
+        width: 100%;
+        padding: calc(52px + 1rem) 1rem 1rem 1rem;
+    }
+
+}
+
+.guides_nav {
+    h2 {
+        text-align: center;
+        span {
+            // border-bottom: 0.2em solid var(--col-blue-400);
+            text-decoration: underline var(--col-blue-400) solid 0.2em;
+        }
+    }
+    &__grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        & > * {
+            flex: 1 1 415px; /* Allow the items to grow and shrink, with a base width of 215px */
+
+            @media (min-width: 576px) {
+                max-width: calc(50% - 1rem); /* Two items per row at min-width 576px */
+            }
+            
+            @media (min-width: 768px) {
+                max-width: calc(33.3333% - 1rem); /* Three items per row at min-width 768px */
+            }
+        }
+        &.two_cols > * {
+            flex: 1 1 415px; /* Allow the items to grow and shrink, with a base width of 215px */
+            max-width: 100%;
+
+            @media (min-width: 576px) {
+                max-width: calc(50% - 1rem); /* Two items per row at min-width 576px */
+            }
+        }
+    }
+
+
+    &__inner {
+        display: grid;
+        height: 100%;
+        place-content: center;
+        padding: 1rem;
+        z-index: 1;
+        position: relative;
+    }
+    &__card {
+        overflow: hidden;
+        isolation: isolate;
+        aspect-ratio: 16 / 9;
+        background-color: var(--col-white);
+        border: 1px solid var(--col-grey-600);
+        position: relative;
+        text-decoration: none;
+    }
+    &__image {
+        position: absolute;
+        aspect-ratio: 16 / 9;
+        inset: 0;
+        object-fit: cover;
+        width: 100%;
+        z-index: -1;
+        filter: brightness(0.5);
+    }
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        mix-blend-mode: soft-light;
+        background: linear-gradient(45deg, var(--col-yellow-400), var(--col-blue-400));
+    }
+}

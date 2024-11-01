@@ -1,0 +1,16 @@
+.stats {
+    .container-xl {
+        background-color: var(--col-blue-400);
+        color: var(--col-white);
+        ul {
+            margin-bottom: 0;
+        }
+        li {
+            list-style-type: square;
+            &::marker {
+                color: var(--col-yellow-400);
+                font-size: var(--fs-500);
+            }
+        }
+    }
+}

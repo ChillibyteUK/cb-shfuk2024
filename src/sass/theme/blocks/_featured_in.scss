@@ -1,0 +1,26 @@
+.featured_in {
+    background-color: var(--col-black);
+    color: var(--col-yellow-400);
+    // &__grid {
+    //     @media (min-width:768px) {
+    //         display: flex;
+    //         gap: 1rem;
+    //         align-items: center;
+    //         * {
+    //             flex-grow: 1;
+    //         }
+    //     }
+    // }
+    // &__label {
+    //     text-align: center;
+    //     min-width: 150px;
+    // }
+
+    .swiper-slide {
+        img {
+            opacity: 0.8;
+            margin-inline: auto;
+            display: block;
+        }
+    }
+}

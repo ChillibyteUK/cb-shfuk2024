@@ -1,0 +1,72 @@
+.three_steps {
+    h2 {
+        position: relative;
+        min-height: 120px;
+        display: flex;
+        flex: 1;
+        align-items: center;
+        @media (min-width:992px) {
+            padding-inline-start: 0;
+        }
+        width: min(800px,90vw);
+        @media (min-width:768px) {
+            padding-inline-start: 3rem;
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                width: 30px;
+                height: 80px;
+                background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_2' data-name='Layer 2' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 80'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B fill: %230073cc; stroke-width: 0px; %7D %3C/style%3E%3C/defs%3E%3Cg id='Layer_1-2' data-name='Layer 1'%3E%3Cpolyline class='cls-1' points='28.82 31.14 0 0 0 4.93 26.54 33.61'/%3E%3Cpath class='cls-1' d='m30,44.99v-11.43L0,65.98v14.02s27.88-30.12,28.59-30.89c.71-.77,1.41-2.12,1.41-4.11Z'/%3E%3C/g%3E%3C/svg%3E");
+                // background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_2' data-name='Layer 2' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50.31 100.63'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B fill: %230073CC; stroke-width: 0px; %7D %3C/style%3E%3C/defs%3E%3Cg id='NAV_BAR' data-name='NAV BAR'%3E%3Cpolygon class='cls-1' points='0 35.54 14.79 50.32 0 65.11 0 100.63 50.31 50.32 0 0 0 35.54'/%3E%3C/g%3E%3C/svg%3E");
+            }
+        }
+    }
+    h3 {
+        color: var(--col-blue-400);
+        font-size: var(--fs-600);
+    }
+    &__bg {
+        padding-top: 100px;
+        padding-bottom: 3rem;
+        background-color: var(--col-grey-400);
+        background-image: url(../img/steps-bg.jpg);
+        background-size: 100% 200px;
+        background-repeat: no-repeat;
+        background-position: top center;
+    }
+    &__step {
+        display: grid;
+        grid-template-areas: "marker" "title" "content";
+        @media(min-width:576px) {
+            grid-template-areas: "marker title" "marker content";
+            grid-template-columns: 80px 1fr;
+        }
+        background-color: var(--col-white);
+        border-bottom: 4px solid var(--col-grey-400);
+    }
+    &__marker {
+        grid-area: marker;
+        font-size: var(--fs-900);
+        font-weight: var(--fw-700);
+        text-align: center;
+        color: var(--col-blue-400);
+        background-color: var(--col-yellow-400);
+        @media(min-width:576px) {
+            background-color: white;
+            background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_2' data-name='Layer 2' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B fill: %23ffdc1f; stroke-width: 0px; %7D %3C/style%3E%3C/defs%3E%3Cg id='NAV_BAR' data-name='NAV BAR'%3E%3Crect id='_Slice_' data-name='&amp;lt;Slice&amp;gt;' class='cls-1' width='80' height='80'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 80px 80px;
+            background-repeat: no-repeat;
+            background-position: top left;
+        }
+    }
+    &__title {
+        grid-area: title;
+        padding: 1rem 1rem 0 1rem;
+        margin-bottom: 0;
+    }
+    &__content {
+        grid-area: content;
+        padding: 1rem;
+    }
+}

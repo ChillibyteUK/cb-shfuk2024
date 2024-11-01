@@ -1,0 +1,19 @@
+.spinner {
+    background-color: var(--col-grey-400);
+    h2 {
+        span {
+            text-decoration: underline var(--col-blue-400) solid 0.2em;
+        }
+    }
+    &__stat {
+        font-size: var(--fs-800);
+        font-weight: var(--fw-700);
+        color: var(--col-blue-400);
+    }
+    .counter {
+        display: inline;
+    }
+    &__title {
+        font-weight: var(--fw-600);
+    }
+}

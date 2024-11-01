@@ -1,0 +1,25 @@
+.short_cta {
+    &__inner {
+        display: flex;
+        row-gap: 1rem;
+        column-gap: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        background-color: var(--col-grey-400);
+    }
+    background-color: var(--col-white);
+    &--invert {
+        background-color: var(--col-grey-400);
+        .short_cta__inner {
+            background-color: var(--col-white);
+        }
+    }
+    &__title {
+        font-weight: var(--fw-700);
+        font-size: var(--fs-600);
+        span {
+            color: var(--col-blue-400);
+            font-style: italic;
+        }
+    }
+}

@@ -20,7 +20,7 @@ get_header();
 <main id="main" role="main">
     <section class="form_hero">
         <div class="container-xl py-6 text-center">
-            <div class="h2 mb-0 font-weight-medium">SellHouseFast.co.uk</div>
+            <div class="h2 mb-0 font-weight-medium">SellHouseFast.uk</div>
             <h1>Property <span>Insights</span></h1>
             <div class="form_hero__form">
                 <input type="text" name="postcode_<?=$id?>" id="postcode_<?=$id?>" placeholder="Enter postcode" autocomplete="off"><button class="button button-sm formbutton">Get Free Cash Offer</button>

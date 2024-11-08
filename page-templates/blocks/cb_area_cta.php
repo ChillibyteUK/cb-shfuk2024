@@ -17,32 +17,16 @@
                 if (! empty($terms) && ! is_wp_error($terms)) {
                     echo '<ul class="locations-list">';
 
-                    // Loop through each term and display its name
+                    // Loop through each term and display its name or link if the page exists
                     foreach ($terms as $term) {
-                        // Query posts associated with the term
-                        $posts_query = new WP_Query(array(
-                            'post_type' => 'your_post_type', // Replace with your custom post type if necessary
-                            'tax_query' => array(
-                                array(
-                                    'taxonomy' => 'location',
-                                    'field'    => 'term_id',
-                                    'terms'    => $term->term_id,
-                                ),
-                            ),
-                            'post_status' => 'publish',
-                            'posts_per_page' => 1, // We only need to check if there's at least one published post
-                        ));
+                        $term_slug = $term->slug;
+                        $term_link = get_permalink(get_page_by_path('location/' . $term_slug));
 
-                        if ($posts_query->have_posts()) {
-                            // If there's at least one published post, show the term link
-                            echo '<li>' . get_custom_term_link($term, 'Sell in') . '</li>';
+                        if ($term_link) {
+                            echo '<li><a href="' . esc_url($term_link) . '">Sell in ' . esc_html($term->name) . '</a></li>';
                         } else {
-                            // If no published post, show text
                             echo '<li>Sell in ' . esc_html($term->name) . '</li>';
                         }
-
-                        // Reset post data after custom query
-                        wp_reset_postdata();
                     }
 
                     echo '</ul>';

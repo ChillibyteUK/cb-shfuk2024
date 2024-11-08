@@ -38,7 +38,7 @@
                             echo '<li>' . get_custom_term_link($term, 'Sell in') . '</li>';
                         } else {
                             // If no published post, show text
-                            echo '<li>' . esc_html($term->name) . '</li>';
+                            echo '<li>Sell in ' . esc_html($term->name) . '</li>';
                         }
 
                         // Reset post data after custom query

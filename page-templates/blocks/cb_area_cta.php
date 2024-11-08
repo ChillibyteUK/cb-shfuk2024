@@ -24,9 +24,9 @@
 
                         if ($page && get_post_status($page->ID) == 'publish') {
                             $term_link = get_permalink($page->ID);
-                            echo '<li><a href="' . esc_url($term_link) . '">' . esc_html($term->name) . '</a></li>';
+                            echo '<li><a href="' . esc_url($term_link) . '">Sell in ' . esc_html($term->name) . '</a></li>';
                         } else {
-                            echo '<li>' . esc_html($term->name) . '</li>';
+                            echo '<li>Sell in ' . esc_html($term->name) . '</li>';
                         }
                     }
 

@@ -20,7 +20,7 @@
                     // Loop through each term and display its name or link if the page exists
                     foreach ($terms as $term) {
                         $term_slug = $term->slug;
-                        $page = get_page_by_path('location/' . $term_slug, OBJECT, 'page');
+                        $page = get_page_by_path('locations/' . $term_slug, OBJECT, 'page');
 
                         if ($page && get_post_status($page->ID) == 'publish') {
                             $term_link = get_permalink($page->ID);

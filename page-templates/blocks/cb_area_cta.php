@@ -20,12 +20,13 @@
                     // Loop through each term and display its name or link if the page exists
                     foreach ($terms as $term) {
                         $term_slug = $term->slug;
-                        $term_link = get_permalink(get_page_by_path('location/' . $term_slug));
+                        $page = get_page_by_path('location/' . $term_slug, OBJECT, 'page');
 
-                        if ($term_link) {
-                            echo '<li><a href="' . esc_url($term_link) . '">Sell in ' . esc_html($term->name) . '</a></li>';
+                        if ($page && get_post_status($page->ID) == 'publish') {
+                            $term_link = get_permalink($page->ID);
+                            echo '<li><a href="' . esc_url($term_link) . '">' . esc_html($term->name) . '</a></li>';
                         } else {
-                            echo '<li>Sell in ' . esc_html($term->name) . '</li>';
+                            echo '<li>' . esc_html($term->name) . '</li>';
                         }
                     }
 

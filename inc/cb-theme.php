@@ -318,5 +318,30 @@ function open_external_links_in_new_tab( $content ) {
 }
 add_filter( 'the_content', 'open_external_links_in_new_tab' );
 
+// Add a new column to the Pages admin view
+function add_template_column($columns) {
+    $columns['template'] = 'Template';
+    return $columns;
+}
+add_filter('manage_pages_columns', 'add_template_column');
+
+// Display the nice name of the template in the custom column
+function display_template_column($column, $post_id) {
+    if ($column === 'template') {
+        // Get all available templates
+        $templates = wp_get_theme()->get_page_templates();
+        
+        // Get the template file name for the current page
+        $template_file = get_page_template_slug($post_id);
+        
+        if ($template_file && isset($templates[$template_file])) {
+            // Display the "nice name" of the template
+            echo $templates[$template_file];
+        } else {
+            echo 'Default';
+        }
+    }
+}
+add_action('manage_pages_custom_column', 'display_template_column', 10, 2);
 
 ?>

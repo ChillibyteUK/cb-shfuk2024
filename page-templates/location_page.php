@@ -21,7 +21,7 @@ if (!empty($terms) && !is_wp_error($terms)) {
         <div class="container-xl">
             <div class="mb-5 d-flex justify-content-between flex-wrap align-items-center">
                 <h2 class="mb-4 h3"><?=$first_term->name?> Property News</h2>
-                <a href="/locations/<?=$first_term->slug?>/<?=$first_term->slug?>-insights/" class="button">See all articles</a>
+                <a href="/locations/<?=$first_term->slug?>/<?=$first_term->slug?>-blog/" class="button">See all articles</a>
             </div>
             <div class="row g-2">
             <?php

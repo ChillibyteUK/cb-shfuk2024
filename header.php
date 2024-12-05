@@ -55,6 +55,18 @@ if (!is_user_logged_in()) {
         <?php
     }
 
+    if (get_field('ga_property','options')) {
+        ?>
+<!-- Google tag (gtag.js) -->
+ <script async src="https://www.googletagmanager.com/gtag/js?id=<?=get_field('ga_property','options')?>"></script>
+ <script>
+ window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());   gtag('config', '<?=get_field('ga_property','options')?>');
+ </script>
+        <?php
+    }
+
 }
 
 
@@ -65,14 +77,14 @@ if (is_front_page() || is_page('contact-us')) {
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "SellHouseFast",
-            "legalName": "Jolack Limited",
-            "url": "https://www.sellhousefast.co.uk/",
-            "logo": "https://sellhousefast.co.uk/wp-content/themes/cb-shfuk2024/img/sellhousefast-logo--dark.svg",
+            "legalName": "JACKANDA Limited",
+            "url": "https://www.sellhousefast.uk/",
+            "logo": "https://sellhousefast.uk/wp-content/themes/cb-shfuk2024/img/sellhousefast-logo--dark.svg",
             "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "Office 1.01, 411 - 413 Oxford Street",
-                "addressLocality": "London",
-                "postalCode": "W1C 2PE",
+                "streetAddress": "Acero, Office 527, 1 Concourse Way",
+                "addressLocality": "Sheffield",
+                "postalCode": "S1 2BJ",
                 "addressCountry": "United Kingdom"
             },
             "contactPoint": {

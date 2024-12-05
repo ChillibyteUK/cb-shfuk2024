@@ -211,6 +211,27 @@
             "maxlength": ""
         },
         {
+            "key": "field_6751d2527910d",
+            "label": "GA Property",
+            "name": "ga_property",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_6321db49e3eb4",
             "label": "Google Site Verification",
             "name": "google_site_verification",
@@ -544,6 +565,7 @@
                     "collapsed": "",
                     "button_label": "Add Row",
                     "rows_per_page": 20,
+                    "parent_repeater": "field_66bc7ea5ce8b6",
                     "sub_fields": [
                         {
                             "key": "field_66bc91a3817dd",
@@ -947,8 +969,7 @@
                             "append": "",
                             "parent_repeater": "field_66bc7eeece8b8"
                         }
-                    ],
-                    "parent_repeater": "field_66bc7ea5ce8b6"
+                    ]
                 }
             ]
         },
@@ -1066,6 +1087,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "show_in_rest": 0,
-    "modified": 1725957309
+    "show_in_rest": 0
 }

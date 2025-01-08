@@ -1,4 +1,7 @@
-<section class="three_col_cards mb-5">
+<?php
+$class = $block['className'] ?? 'mb-5';
+?>
+<section class="three_col_cards <?=$class?>">
     <div class="container-xl">
         <h2 class="mb-4"><?=get_field('title')?></h2>
     </div>

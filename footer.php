@@ -68,7 +68,6 @@ defined('ABSPATH') || exit;
     postcodeFields.forEach(function(field) {
       // Initialize Address Finder for each postcode field
       IdealPostcodes.AddressFinder.setup({
-        // apiKey: "ak_m0nmyml1DLCjYH79nA9dbcf4cRs5v",
         apiKey: "ak_m0v8lgbiVjp4GmNgoHssE4wAxCqmq",
         inputField: field, // Bind to the specific postcode field
         outputFields: {

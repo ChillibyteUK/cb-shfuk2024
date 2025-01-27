@@ -344,4 +344,15 @@ function display_template_column($column, $post_id) {
 }
 add_action('manage_pages_custom_column', 'display_template_column', 10, 2);
 
+
+// JW 20250127
+add_filter( 'gform_max_async_feed_attempts', 'filter_gform_max_async_feed_attempts', 10, 5 );
+function filter_gform_max_async_feed_attempts( $max_attempts, $form, $entry, $addon_slug, $feed ) {
+    if ( $addon_slug == 'gravityformshubspot' ) {
+        $max_attempts = 3;
+    }
+ 
+    return $max_attempts;
+}
+
 ?>

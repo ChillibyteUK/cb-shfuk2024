@@ -82,7 +82,7 @@ if (get_field('vimeo_id')) {
         "transcript" => $transcript,
         "publisher" => [
             "@type" => "Organization",
-            "name" => "SellHouseFast.co.uk",
+            "name" => "SellHouseFast.uk",
             "logo" => [
                 "@type" => "ImageObject",
                 "url" => $image

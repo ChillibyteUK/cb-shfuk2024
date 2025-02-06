@@ -126,7 +126,7 @@ defined('ABSPATH') || exit;
             <div class="container-xl py-2">
                 <a href="/" class="header_logo"><img
                         src="<?= get_stylesheet_directory_uri() ?>/img/sellhousefast-logo--dark.svg"
-                        width=187 height=58 alt="Sell House Fast" title="SellHouseFast.co.uk"></a>
+                        width=187 height=58 alt="Sell House Fast" title="SellHouseFast.uk"></a>
                 <button class="header_toggle navbar-toggler input-button" id="navToggle" data-bs-toggle="collapse"
                     data-bs-target=".navbars" type="button" aria-label="Navigation"><i
                         class="fa fa-navicon"></i></button>

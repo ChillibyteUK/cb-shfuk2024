@@ -66,8 +66,8 @@ if (is_front_page() || is_page('contact-us')) {
             "@type": "Organization",
             "name": "SellHouseFast",
             "legalName": "Jolack Limited",
-            "url": "https://www.sellhousefast.co.uk/",
-            "logo": "https://www.sellhousefast.co.uk/wp-content/themes/cb-shfuk2024/img/shf-logo-large.png",
+            "url": "https://www.sellhousefast.uk/",
+            "logo": "https://www.sellhousefast.uk/wp-content/themes/cb-shfuk2024/img/shf-logo-large.png",
             "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "Office 1.01, 411 - 413 Oxford Street",
@@ -79,7 +79,7 @@ if (is_front_page() || is_page('contact-us')) {
                 "@type": "ContactPoint",
                 "contactType": "customer support",
                 "telephone": "[+44 (0) 800 098 3789]",
-                "email": "info@sellhousefast.co.uk"
+                "email": "info@sellhousefast.uk"
             },
             "sameAs": [
                 "https://twitter.com/",
@@ -114,7 +114,7 @@ if (get_field('gtm_property', 'options')) {
             <div class="container-xl py-2">
                 <a href="/" class="header_logo"><img
                         src="<?=get_stylesheet_directory_uri()?>/img/sellhousefast-logo--dark.svg"
-                        width=187 height=58 alt="Sell House Fast" title="SellHouseFast.co.uk"></a>
+                        width=187 height=58 alt="Sell House Fast" title="SellHouseFast.uk"></a>
                 <button class="header_toggle navbar-toggler input-button" id="navToggle" data-bs-toggle="collapse"
                     data-bs-target=".navbars" type="button" aria-label="Navigation"><i
                         class="fa fa-navicon"></i></button>

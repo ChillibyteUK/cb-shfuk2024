@@ -521,9 +521,12 @@ function register_post_list_shortcode() {
 }
 add_shortcode('post_list', 'register_post_list_shortcode');
 
-if (!defined('DISALLOW_FILE_EDIT')) {
-    define('DISALLOW_FILE_EDIT', true);
+function disable_theme_editor() {
+    // Remove the Theme Editor from the Appearance menu
+    remove_submenu_page('themes.php', 'theme-editor.php');
 }
+add_action('admin_menu', 'disable_theme_editor', 999);
+
 
 
 // SESSIONS STUFF

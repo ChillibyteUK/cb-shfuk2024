@@ -1,16 +1,4 @@
 <?php
-/**
- * The main template file
- *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * E.g., it puts together the home page when no home.php file exists.
- * Learn more: http://codex.wordpress.org/Template_Hierarchy
- *
- * @package cb-shfuk2024
- */
-
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
 
@@ -32,20 +20,34 @@ get_header();
         <div class="container-xl">
             <div class="row g-2">
             <?php
+            $current_category = get_queried_object();
+$current_category_slug = ($current_category && isset($current_category->slug)) ? $current_category->slug : '';
 
-            $terms = get_terms(array(
-                'taxonomy' => 'category',
-                'hide_empty' => true,
-            ));
+$terms = get_terms(array(
+    'taxonomy' => 'category',
+    'hide_empty' => true,
+));
+
+$category_filter = '';
+if ($current_category && isset($current_category->term_id)) {
+    $category_filter = $wpdb->prepare("AND tt.term_id = %d", $current_category->term_id);
+}
+
+// Display current category name
+if ($current_category && isset($current_category->name)) {
+    echo '<h2>Category: ' . esc_html($current_category->name) . '</h2>';
+}
+
 ?>
-            <div class="col-12">
+            <div class="col-12 mb-4">
                 <div class="filter">
                     <label for="filter">Filter by category:</label>
                     <select name="filter" id="filter" class="form-select">
                         <option value="">All</option>
                         <?php
             foreach ($terms as $term) {
-                echo '<option value="' . $term->slug . '">' . $term->name . '</option>';
+                $selected = ($term->slug === $current_category_slug) ? 'selected' : '';
+                echo '<option value="' . $term->slug . '" ' . $selected . '>' . $term->name . '</option>';
             }
 ?>
                     </select>
@@ -63,10 +65,7 @@ get_header();
             </script>
             <?php
 
-
-            // WordPress' WP_Query doesn't provide native support for complex sorting and grouping across taxonomy relationships, so an SQL query is the only option
-
-            global $wpdb;
+global $wpdb;
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $posts_per_page = get_option('posts_per_page');
 $offset = ($paged - 1) * $posts_per_page;
@@ -75,9 +74,10 @@ $query = "
                 SELECT DISTINCT p.ID
                 FROM {$wpdb->posts} p
                 LEFT JOIN {$wpdb->term_relationships} tr ON p.ID = tr.object_id
-                LEFT JOIN {$wpdb->term_taxonomy} tt ON tr.term_taxonomy_id = tt.term_taxonomy_id AND tt.taxonomy = 'location'
+                LEFT JOIN {$wpdb->term_taxonomy} tt ON tr.term_taxonomy_id = tt.term_taxonomy_id AND tt.taxonomy = 'category'
                 WHERE p.post_type = 'post'
                 AND p.post_status = 'publish'
+                $category_filter
                 GROUP BY p.ID
                 ORDER BY COUNT(tt.term_id) = 0 DESC, p.post_date DESC
                 LIMIT %d OFFSET %d
@@ -126,6 +126,7 @@ $total_posts_query = "
                 LEFT JOIN {$wpdb->term_taxonomy} tt ON tr.term_taxonomy_id = tt.term_taxonomy_id AND tt.taxonomy = 'location'
                 WHERE p.post_type = 'post'
                 AND p.post_status = 'publish'
+                $category_filter
             ";
 $total_posts = $wpdb->get_var($total_posts_query);
 

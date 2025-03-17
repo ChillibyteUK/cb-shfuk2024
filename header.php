@@ -76,29 +76,36 @@ defined('ABSPATH') || exit;
 
     if (is_front_page() || is_page('contact-us')) {
         ?>
-        <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "Organization",
-                "name": "SellHouseFast",
-                "legalName": "JACKANDA Limited",
-                "url": "https://www.sellhousefast.uk/",
-                "logo": "https://sellhousefast.uk/wp-content/themes/cb-shfuk2024/img/sellhousefast-logo--dark.svg",
-                "address": {
-                    "@type": "PostalAddress",
-                    "streetAddress": "Acero, Office 527, 1 Concourse Way",
-                    "addressLocality": "Sheffield",
-                    "postalCode": "S1 2BJ",
-                    "addressCountry": "United Kingdom"
-                },
-                "contactPoint": {
-                    "@type": "ContactPoint",
-                    "contactType": "customer support",
-                    "telephone": "[+44 (0) 800 368 4757]",
-                    "email": "info@sellhousefast.uk"
-                }
-            }
-        </script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Sell House Fast",
+    "legalName": "Jolack Limited",
+    "url": "https://www.sellhousefast.uk/",
+    "logo": "https://sellhousefast.uk/wp-content/themes/cb-shfuk2024/img/sellhousefast-logo--dark.svg",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Office 1.01, 411 - 413 Oxford Street",
+        "addressLocality": "London",
+        "postalCode": "W1C 2PE",
+        "addressCountry": "United Kingdom"
+    },
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "telephone": "+44 (0) 800 368 4757",
+        "email": "info@sellhousefast.uk"
+    },
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "reviewCount": "31",
+        "bestRating": "5",
+        "worstRating": "1"
+    }
+}
+</script>
     <?php
     }
     ?>

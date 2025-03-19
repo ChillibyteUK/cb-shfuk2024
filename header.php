@@ -31,19 +31,6 @@ defined('ABSPATH') || exit;
 
     <?php
     if (!is_user_logged_in()) {
-?>
-        <!-- Matomo Tag Manager -->
-<script>
-  var _mtm = window._mtm = window._mtm || [];
-  _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
-  (function() {
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.async=true; g.src='https://cdn.matomo.cloud/sellhousefastuk.matomo.cloud/container_9fg8vM56.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<!-- End Matomo Tag Manager -->
-<?php
-
         if (get_field('gtm_property', 'options')) {
     ?>
             <!-- Google Tag Manager -->
@@ -123,6 +110,22 @@ defined('ABSPATH') || exit;
     }
     ?>
     <?php wp_head(); ?>
+    <?php
+    if (!is_user_logged_in()) {
+?>
+        <!-- Matomo Tag Manager -->
+<script>
+  var _mtm = window._mtm = window._mtm || [];
+  _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+  (function() {
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='https://cdn.matomo.cloud/sellhousefastuk.matomo.cloud/container_9fg8vM56.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Tag Manager -->
+<?php
+    }
+    ?>
 </head>
 
 <body <?php body_class(); ?>>

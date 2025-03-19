@@ -37,7 +37,7 @@ get_header();
                 'hide_empty' => true,
             ));
 ?>
-            <div class="col-12">
+            <div class="col-12 mb-4">
                 <div class="filter">
                     <label for="filter">Filter by category:</label>
                     <select name="filter" id="filter" class="form-select">

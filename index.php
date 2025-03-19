@@ -32,7 +32,6 @@ get_header();
         <div class="container-xl">
             <div class="row g-2">
             <?php
-/*
             $terms = get_terms(array(
                 'taxonomy' => 'category',
                 'hide_empty' => true,
@@ -62,7 +61,6 @@ get_header();
                 });
             </script>
             <?php
-*/
 
             // WordPress' WP_Query doesn't provide native support for complex sorting and grouping across taxonomy relationships, so an SQL query is the only option
 

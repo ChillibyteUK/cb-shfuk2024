@@ -41,26 +41,39 @@ if ($current_category && isset($current_category->name)) {
 ?>
             <div class="col-12 mb-4">
                 <div class="filter">
-                    <label for="filter">Filter by category:</label>
-                    <select name="filter" id="filter" class="form-select">
-                        <option value="">All</option>
+                    <label for="filter" class="mb-2">Filter by category:</label>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button class="btn btn-outline-primary" data-filter="all">All</button>
                         <?php
-            foreach ($terms as $term) {
-                $selected = ($term->slug === $current_category_slug) ? 'selected' : '';
-                echo '<option value="' . $term->slug . '" ' . $selected . '>' . $term->name . '</option>';
-            }
-?>
-                    </select>
+                        foreach ($terms as $term) {
+                            if ($term->slug === 'uncategorized') {
+                                continue;
+                            }
+                            if ($term->slug === $current_category_slug) {
+                                ?>
+                        <button class="btn btn-outline-primary active" data-filter="<?=$term->slug?>"><?=$term->name?></button>
+                            <?php
+                            } else {
+                            ?>
+                        <button class="btn btn-outline-primary" data-filter="<?=$term->slug?>"><?=$term->name?></button>
+                            <?php
+                            }
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
             <script>
-                document.getElementById('filter').addEventListener('change', function() {
-                    const selected = this.value;
-                    if (selected) {
-                        window.location.href = '/category/' + selected;
-                    } else {
-                        window.location.href = '/blog/';
-                    }
+                document.querySelectorAll('[data-filter]').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const selected = this.getAttribute('data-filter');
+                        
+                        if (selected === 'all') {
+                            window.location.href = '/blog/';
+                        } else {
+                            window.location.href = '/category/' + selected;
+                        }
+                    });
                 });
             </script>
             <?php

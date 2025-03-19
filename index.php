@@ -39,25 +39,33 @@ get_header();
 ?>
             <div class="col-12 mb-4">
                 <div class="filter">
-                    <label for="filter">Filter by category:</label>
-                    <select name="filter" id="filter" class="form-select">
-                        <option value="">All</option>
+                    <label for="filter" class="mb-2">Filter by category:</label>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button class="btn btn-outline-primary active" data-filter="all">All</button>
                         <?php
-            foreach ($terms as $term) {
-                echo '<option value="' . $term->slug . '">' . $term->name . '</option>';
-            }
-?>
-                    </select>
+                        foreach ($terms as $term) {
+                            if ($term->slug === 'uncategorized') {
+                                continue;
+                            }
+                            ?>
+                        <button class="btn btn-outline-primary" data-filter="<?=$term->slug?>"><?=$term->name?></button>
+                            <?php
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
             <script>
-                document.getElementById('filter').addEventListener('change', function() {
-                    const selected = this.value;
-                    if (selected) {
-                        window.location.href = '/category/' + selected;
-                    } else {
-                        window.location.href = '/blog/';
-                    }
+                document.querySelectorAll('[data-filter]').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const selected = this.getAttribute('data-filter');
+                        
+                        if (selected === 'all') {
+                            window.location.href = '/blog/';
+                        } else {
+                            window.location.href = '/category/' + selected;
+                        }
+                    });
                 });
             </script>
             <?php

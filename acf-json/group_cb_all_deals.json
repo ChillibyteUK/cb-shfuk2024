@@ -1,0 +1,23 @@
+{
+    "key": "group_cb_all_deals",
+    "title": "CB All Deals",
+    "fields": [
+        {
+            "key": "field_cb_all_deals_title",
+            "label": "CB All Deals",
+            "name": "title",
+            "type": "message"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/cb-all-deals"
+            }
+        ]
+    ],
+    "active": 1,
+    "description": ""
+}

@@ -1,0 +1,23 @@
+{
+    "key": "group_cb_deals_carousel",
+    "title": "CB Deals Carousel",
+    "fields": [
+        {
+            "key": "field_cb_deals_carousel_title",
+            "label": "CB Deals Carousel",
+            "name": "title",
+            "type": "message"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/cb-deals-carousel"
+            }
+        ]
+    ],
+    "active": 1,
+    "description": ""
+}

@@ -1,0 +1,7 @@
+.all_deals {
+    &__image {
+        aspect-ratio: 4 / 3;
+        width: 100%;
+        object-fit: cover;
+    }
+}

@@ -43,6 +43,72 @@ function create_location_taxonomy() {
 }
 add_action('init', 'create_location_taxonomy');
 
+function register_deals_cpt() {
+    $labels = array(
+        'name'               => 'Deals',
+        'singular_name'      => 'Deal',
+        'add_new'            => 'Add New Deal',
+        'add_new_item'       => 'Add New Deal',
+        'edit_item'          => 'Edit Deal',
+        'new_item'           => 'New Deal',
+        'view_item'          => 'View Deal',
+        'search_items'       => 'Search Deals',
+        'not_found'          => 'No deals found',
+        'not_found_in_trash' => 'No deals found in Trash',
+        'menu_name'          => 'Deals',
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => false, // Not publicly accessible
+        'publicly_queryable' => false,
+        'show_ui'            => true, // Show in admin
+        'show_in_menu'       => true,
+        'query_var'          => false,
+        'rewrite'            => false,
+        'has_archive'        => false,
+        'hierarchical'       => false,
+        'menu_position'      => 20,
+        'supports'           => array('title', 'editor', 'thumbnail'),
+        'show_in_rest'       => true, // Optional: enables block editor and API access
+    );
+
+    register_post_type('deals', $args);
+}
+add_action('init', 'register_deals_cpt');
+
+function register_deals_taxonomy() {
+    $labels = array(
+        'name'              => 'Deal Types',
+        'singular_name'     => 'Deal Type',
+        'search_items'      => 'Search Deal Types',
+        'all_items'         => 'All Deal Types',
+        'parent_item'       => 'Parent Deal Type',
+        'parent_item_colon' => 'Parent Deal Type:',
+        'edit_item'         => 'Edit Deal Type',
+        'update_item'       => 'Update Deal Type',
+        'add_new_item'      => 'Add New Deal Type',
+        'new_item_name'     => 'New Deal Type Name',
+        'menu_name'         => 'Deal Types',
+    );
+
+    $args = array(
+        'hierarchical'      => true, // Set to false for tags-style
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => false,
+        'public'            => false,
+        'publicly_queryable'=> false,
+        'show_in_rest'      => true,
+    );
+
+    register_taxonomy('deal_type', array('deals'), $args);
+}
+add_action('init', 'register_deals_taxonomy');
+
+
 // Flush rewrite rules to ensure changes take effect
 function flush_rewrite_rules_on_activation() {
     create_location_taxonomy();

@@ -59,7 +59,7 @@ if (!empty($terms) && !is_wp_error($terms)) {
             }
 
             if ($c < 3) {
-                $x = $c - 3;
+                $x = 3 - $c;
             
                 $q = new WP_Query(array(
                     'post_type' => 'post',

@@ -21161,7 +21161,6 @@ footer .colophon {
   color: var(--col-yellow-400);
 }
 .featured_in .swiper-slide img {
-  opacity: 0.8;
   margin-inline: auto;
   display: block;
 }

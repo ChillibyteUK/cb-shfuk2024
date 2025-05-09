@@ -232,6 +232,15 @@ defined('ABSPATH') || exit;
     })();
 </script>
   -->
+<style>
+#mobileCta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+</style>
 <div id="mobileCta" class="px-1 pb-1 d-md-none">
   <a href="/free-cash-offer/" class="button button-sm d-block">Get Your Free Offer</a>
 </div>

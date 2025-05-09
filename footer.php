@@ -232,14 +232,9 @@ defined('ABSPATH') || exit;
     })();
 </script>
   -->
-<style>
-  #mobileCta {
-    width: 100%;
-    margin-inline: 5px;
-  }
-</style>
-
-<a href="/free-cash-offer/" class="button button-sm d-md-none" id="mobileCta">Get Your Free Offer</a>
+<div id="mobileCta" class="px-1 pb-1 d-md-none">
+  <a href="/free-cash-offer/" class="button button-sm d-block">Get Your Free Offer</a>
+</div>
 
 <!-- Start of HubSpot Embed Code -->
 <script type="text/javascript" id="hs-script-loader" data-cookieconsent="marketing" async defer src="//js-eu1.hs-scripts.com/145136229.js" nitro-exclude></script>

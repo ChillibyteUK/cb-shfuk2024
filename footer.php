@@ -241,8 +241,36 @@ defined('ABSPATH') || exit;
   z-index: 1000;
 }
 </style>
+<script nitro-exclude>
+  document.addEventListener("DOMContentLoaded", function () {
+    const mobileCta = document.getElementById("mobileCta");
+    const footer = document.querySelector("footer");
+
+    if (mobileCta && footer) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Hide the #mobileCta when the footer is visible
+              mobileCta.style.display = "none";
+            } else {
+              // Show the #mobileCta when the footer is not visible
+              mobileCta.style.display = "block";
+            }
+          });
+        },
+        {
+          root: null, // Use the viewport as the root
+          threshold: 0, // Trigger when any part of the footer enters the viewport
+        }
+      );
+
+      observer.observe(footer);
+    }
+  });
+</script>
 <div id="mobileCta" class="px-1 pb-1 d-md-none">
-  <a href="/free-cash-offer/" class="button button-sm d-block">Get Your Free Offer</a>
+  <a href="/free-cash-offer/" class="button button-sm text-center d-block">Get Your Free Offer</a>
 </div>
 
 <!-- Start of HubSpot Embed Code -->

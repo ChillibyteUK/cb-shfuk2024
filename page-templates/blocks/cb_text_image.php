@@ -17,7 +17,7 @@ $contentBg = get_field('background') == 'grey-400' ? 'bg-white' : 'bg-grey-400';
                     $id = random_str(4);
                     ?>
                 <div class="text_image__cta">
-                    <input type="text" name="postcode_<?=$id?>" id="postcode_<?=$id?>" placeholder="Enter postcode" autocomplete="off"><button class="button button-sm formbutton">Get Free Cash Offer</button>
+                    <input type="text" name="postcode_<?=$id?>" id="postcode_<?=$id?>" placeholder="Enter postcode" autocomplete="off"><button class="button button-sm formbutton">Get Your Free Offer</button>
                 </div>
                     <?php
                 }

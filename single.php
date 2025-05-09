@@ -72,7 +72,7 @@ $img = get_the_post_thumbnail(get_the_ID(), 'full', array('class' => 'blog__imag
                     }
                     ?>
                     <div class="single_cta">
-                        <input type="text" name="postcode" id="postcode" autocomplete="off" placeholder="Enter postcode"><button class="button button-sm">Get Free Cash Offer</button>
+                        <input type="text" name="postcode" id="postcode" autocomplete="off" placeholder="Enter postcode"><button class="button button-sm">Get Your Free Offer</button>
                     </div>
                 </div>
             </div>

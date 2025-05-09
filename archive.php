@@ -11,7 +11,7 @@ get_header();
             <div class="h2 mb-0 font-weight-medium">SellHouseFast.uk</div>
             <h1>Property <span>Blog</span></h1>
             <div class="form_hero__form">
-                <input type="text" name="postcode_<?=$id?>" id="postcode_<?=$id?>" placeholder="Enter postcode" autocomplete="off"><button class="button button-sm formbutton">Get Free Cash Offer</button>
+                <input type="text" name="postcode_<?=$id?>" id="postcode_<?=$id?>" placeholder="Enter postcode" autocomplete="off"><button class="button button-sm formbutton">Get Your Free Offer</button>
             </div>
         </div>
     </section>

@@ -5,7 +5,20 @@
         	<?php
         	foreach ( get_field( 'featured_logos','options' ) as $l ) {
             	?>
-            	<div class="swiper-slide"><?= wp_get_attachment_image( $l, 'full', false, array( 'width' => '305', 'height' => '90' ) ); ?></div>
+            	<div class="swiper-slide">
+					<?php
+					echo wp_get_attachment_image(
+						$l,
+						'full',
+						false,
+						array(
+							'width'   => '305',
+							'height'  => '90',
+							'loading' => 'eager',
+						)
+					);
+					?>
+				</div>
             	<?php
         	}
         	?>

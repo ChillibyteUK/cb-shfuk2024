@@ -24,23 +24,28 @@ window.addEventListener('load', function () {
     if (!container) return;
 
     const images = container.querySelectorAll('img');
+
     if (images.length === 0) {
-        initSwiper(); // fallback if no images
+        initSwiper();
         return;
     }
 
-    let loadedCount = 0;
-    const total = images.length;
+    Promise.all(
+        Array.from(images).map((img) => {
+            if (img.complete && img.naturalHeight !== 0) {
+                return Promise.resolve();
+            }
+            return new Promise((resolve) => {
+                img.addEventListener('load', resolve, { once: true });
+                img.addEventListener('error', resolve, { once: true });
+            });
+        })
+    ).then(() => {
+        initSwiper();
+    });
 
-    const checkAllLoaded = () => {
-        loadedCount++;
-        if (loadedCount === total) {
-            initSwiper();
-        }
-    };
-
-    const initSwiper = () => {
-        const featuredSwiper = new Swiper('.featuredSwiper', {
+    function initSwiper() {
+        new Swiper('.featuredSwiper', {
             autoplay: true,
             slidesPerView: 2,
             spaceBetween: 10,
@@ -61,16 +66,7 @@ window.addEventListener('load', function () {
                 }
             }
         });
-    };
-
-    images.forEach(function (img) {
-        if (img.complete && img.naturalHeight !== 0) {
-            checkAllLoaded();
-        } else {
-            img.addEventListener('load', checkAllLoaded, { once: true });
-            img.addEventListener('error', checkAllLoaded, { once: true }); // in case it fails
-        }
-    });
+    }
 });
 </script>
     	<?php

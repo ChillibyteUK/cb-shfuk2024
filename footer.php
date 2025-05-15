@@ -46,7 +46,7 @@ defined('ABSPATH') || exit;
   <div class="container-xl colophon pb-4">
     <div class="row g-4">
       <div class="col-md-6 order-2 order-md-1">
-        &copy; <?= date('Y') ?> SellHouseFast | Sell House Fast is a trading style of Jolack Ltd Registered in England, no. 15683659.<br>
+        &copy; <?= esc_html( gmdate( 'Y' ) ); ?> SellHouseFast | Sell House Fast is a trading style of Jolack Ltd Registered in England, no. 15683659.<br>
         Registered address: Office 1.01, 411 - 413 Oxford Street, London, England, W1C 2PE
       </div>
       <div class="col-md-6 order-1 order-md-2 d-flex align-items-center justify-content-md-end flex-wrap gap-1">

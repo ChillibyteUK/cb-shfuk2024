@@ -32,6 +32,24 @@ add_action(
     	?>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js" nitro-exclude></script>
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<style>
+.featuredSwiper {
+    height: 100px; /* adjust based on image height */
+    overflow: hidden;
+}
+
+.featuredSwiper .swiper-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.featuredSwiper .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Ensures image aligns correctly */
+}
+</style>
 <script defer nitro-exclude>
 window.addEventListener('load', function () {
     console.log('[Featured Swiper] Window loaded');

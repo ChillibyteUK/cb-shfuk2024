@@ -1,6 +1,6 @@
 <section class="featured_in py-4">
     <div class="container-xl featured_in__grid">
-        <div class="featuredSwiper swiper">
+        <div class="featuredSwiper swiper is-loading">
             <div class="swiper-wrapper">
         	<?php
         	foreach ( get_field( 'featured_logos','options' ) as $l ) {
@@ -48,6 +48,15 @@ add_action(
     align-items: center;
     justify-content: center;
     height: 100%; /* Ensures image aligns correctly */
+}
+.featuredSwiper.is-loading {
+    visibility: hidden;
+}
+
+.featuredSwiper.is-ready {
+    visibility: visible;
+    transition: opacity 0.3s ease;
+    opacity: 1;
 }
 </style>
 <script defer nitro-exclude>
@@ -117,6 +126,9 @@ window.addEventListener('load', function () {
                 }
             }
         });
+		
+		container.classList.remove('is-loading');
+	    container.classList.add('is-ready');
 
         console.log('[Featured Swiper] Swiper instance:', featuredSwiper);
     }

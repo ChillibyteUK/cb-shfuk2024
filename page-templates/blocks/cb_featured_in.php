@@ -19,22 +19,27 @@ add_action(
     	?>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js" nitro-exclude></script>
 <script defer nitro-exclude>
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     const container = document.querySelector('.featuredSwiper');
-
     if (!container) return;
 
     const images = container.querySelectorAll('img');
+    if (images.length === 0) {
+        initSwiper(); // fallback if no images
+        return;
+    }
+
     let loadedCount = 0;
+    const total = images.length;
 
     const checkAllLoaded = () => {
         loadedCount++;
-        if (loadedCount === images.length) {
-            initialiseSwiper();
+        if (loadedCount === total) {
+            initSwiper();
         }
     };
 
-    const initialiseSwiper = () => {
+    const initSwiper = () => {
         const featuredSwiper = new Swiper('.featuredSwiper', {
             autoplay: true,
             slidesPerView: 2,
@@ -56,16 +61,14 @@ window.addEventListener('load', function() {
                 }
             }
         });
-
-        featuredSwiper.update();
     };
 
-    images.forEach((img) => {
-        if (img.complete) {
+    images.forEach(function (img) {
+        if (img.complete && img.naturalHeight !== 0) {
             checkAllLoaded();
         } else {
-            img.addEventListener('load', checkAllLoaded);
-            img.addEventListener('error', checkAllLoaded); // fallback
+            img.addEventListener('load', checkAllLoaded, { once: true });
+            img.addEventListener('error', checkAllLoaded, { once: true }); // in case it fails
         }
     });
 });

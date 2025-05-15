@@ -20,9 +20,6 @@ add_action(
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js" nitro-exclude></script>
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script defer nitro-exclude>
-document.addEventListener('DOMContentLoaded', function () {
-    console.log('DOMContentLoaded fired');
-});
 window.addEventListener('load', function () {
     console.log('[Featured Swiper] Window loaded');
 

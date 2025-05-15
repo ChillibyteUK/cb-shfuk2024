@@ -69,7 +69,7 @@ window.addEventListener('load', function () {
             autoplay: true,
             slidesPerView: 2,
             spaceBetween: 10,
-            loop: true,
+            loop: false,
             lazyPreloadPrevNext: 2,
             breakpoints: {
                 576: {

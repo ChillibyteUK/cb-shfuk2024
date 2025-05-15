@@ -20,33 +20,55 @@ add_action(
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js" nitro-exclude></script>
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script defer nitro-exclude>
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('DOMContentLoaded fired');
+});
 window.addEventListener('load', function () {
+    console.log('[Featured Swiper] Window loaded');
+
     const container = document.querySelector('.featuredSwiper');
-    if (!container) return;
+    if (!container) {
+        console.warn('[Featured Swiper] No .featuredSwiper found in DOM');
+        return;
+    }
 
     const images = container.querySelectorAll('img');
+    console.log(`[Featured Swiper] Found ${images.length} images`);
 
     if (images.length === 0) {
+        console.warn('[Featured Swiper] No images found — initialising anyway');
         initSwiper();
         return;
     }
 
     Promise.all(
-        Array.from(images).map((img) => {
+        Array.from(images).map((img, i) => {
             if (img.complete && img.naturalHeight !== 0) {
+                console.log(`[Featured Swiper] Image ${i} already loaded`);
                 return Promise.resolve();
             }
+
             return new Promise((resolve) => {
-                img.addEventListener('load', resolve, { once: true });
-                img.addEventListener('error', resolve, { once: true });
+                img.addEventListener('load', () => {
+                    console.log(`[Featured Swiper] Image ${i} loaded`);
+                    resolve();
+                }, { once: true });
+
+                img.addEventListener('error', () => {
+                    console.warn(`[Featured Swiper] Image ${i} failed to load`);
+                    resolve(); // still resolve to avoid stalling
+                }, { once: true });
             });
         })
     ).then(() => {
+        console.log('[Featured Swiper] All images loaded — initialising Swiper');
         initSwiper();
     });
 
     function initSwiper() {
-        new Swiper('.featuredSwiper', {
+        console.log('[Featured Swiper] Calling new Swiper()');
+
+        const featuredSwiper = new Swiper('.featuredSwiper', {
             autoplay: true,
             slidesPerView: 2,
             spaceBetween: 10,
@@ -67,6 +89,8 @@ window.addEventListener('load', function () {
                 }
             }
         });
+
+        console.log('[Featured Swiper] Swiper instance:', featuredSwiper);
     }
 });
 </script>

@@ -18,6 +18,7 @@ add_action(
 	function () {
     	?>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js" nitro-exclude></script>
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script defer nitro-exclude>
 window.addEventListener('load', function () {
     const container = document.querySelector('.featuredSwiper');

@@ -66,8 +66,8 @@ if (is_front_page() || is_page('contact-us')) {
             "@type": "Organization",
             "name": "SellHouseFast",
             "legalName": "Jolack Limited",
-            "url": "https://www.sellhousefast.uk/",
-            "logo": "https://www.sellhousefast.uk/wp-content/themes/cb-shfuk2024/img/shf-logo-large.png",
+            "url": "https://sellhousefast.uk/",
+            "logo": "https://sellhousefast.uk/wp-content/themes/cb-shfuk2024/img/shf-logo-large.png",
             "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "Office 1.01, 411 - 413 Oxford Street",
@@ -80,11 +80,7 @@ if (is_front_page() || is_page('contact-us')) {
                 "contactType": "customer support",
                 "telephone": "[+44 (0) 800 098 3789]",
                 "email": "info@sellhousefast.uk"
-            },
-            "sameAs": [
-                "https://twitter.com/",
-                "https://www.linkedin.com/company/"
-            ]
+            }
         }
     </script>
     <?php

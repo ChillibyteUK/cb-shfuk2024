@@ -82,7 +82,7 @@ defined('ABSPATH') || exit;
     "@type": "Organization",
     "name": "Sell House Fast",
     "legalName": "Jolack Limited",
-    "url": "https://www.sellhousefast.uk/",
+    "url": "https://sellhousefast.uk/",
     "logo": "https://sellhousefast.uk/wp-content/themes/cb-shfuk2024/img/sellhousefast-logo--dark.svg",
     "address": {
         "@type": "PostalAddress",

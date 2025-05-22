@@ -27,9 +27,12 @@
     </div>
 </section>
 <?php
-add_action('wp_footer', function() {
-    ?>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer nitro-exclude></script>
+add_action(
+	'wp_footer',
+	function () {
+    	?>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script defer nitro-exclude>
     const reviewSwiper = new Swiper('.review_swiper', {
         autoplay: true,
@@ -48,5 +51,7 @@ add_action('wp_footer', function() {
         },
     });
 </script>
-    <?php
-},9999);
+    	<?php
+	},
+	9999
+);

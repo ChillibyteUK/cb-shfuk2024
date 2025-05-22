@@ -1,27 +1,30 @@
 <section class="featured_in py-4">
     <div class="container-xl featured_in__grid">
-        <div class="featuredSwiper swiper is-loading">
-            <div class="swiper-wrapper">
-        	<?php
-        	foreach ( get_field( 'featured_logos','options' ) as $l ) {
-            	?>
-            	<div class="swiper-slide">
+        <div class="splide featuredSplide">
+            <div class="splide__track">
+				<ul class="splide__list">
 					<?php
-					echo wp_get_attachment_image(
-						$l,
-						'full',
-						false,
-						array(
-							'width'   => '305',
-							'height'  => '90',
-							'loading' => 'eager',
-						)
-					);
+					foreach ( get_field( 'featured_logos', 'options' ) as $l ) {
+						?>
+					<li class="splide__slide">
+						<?php
+						echo wp_get_attachment_image(
+							$l,
+							'full',
+							false,
+							array(
+								'width'   => '305',
+								'height'  => '90',
+								'loading' => 'eager',
+							)
+						);
+						?>
+					</li>
+						<?php
+					}
 					?>
-				</div>
-            	<?php
-        	}
-        	?>
+				</ul>
+			</div>
         </div>
     </div>
 </section>
@@ -30,111 +33,35 @@ add_action(
 	'wp_footer',
 	function () {
     	?>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js" nitro-exclude></script>
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-<style>
-.featuredSwiper {
-    height: 100px; /* adjust based on image height */
-    overflow: hidden;
-}
-
-.featuredSwiper .swiper-wrapper {
-    display: flex;
-    align-items: center;
-}
-
-.featuredSwiper .swiper-slide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%; /* Ensures image aligns correctly */
-}
-.featuredSwiper.is-loading {
-    visibility: hidden;
-}
-
-.featuredSwiper.is-ready {
-    visibility: visible;
-    transition: opacity 0.3s ease;
-    opacity: 1;
-}
-</style>
-<script defer nitro-exclude>
-window.addEventListener('load', function () {
-    // console.log('[Featured Swiper] Window loaded');
-
-    const container = document.querySelector('.featuredSwiper');
-    if (!container) {
-        console.warn('[Featured Swiper] No .featuredSwiper found in DOM');
-        return;
-    }
-
-    const images = container.querySelectorAll('img');
-    // console.log(`[Featured Swiper] Found ${images.length} images`);
-
-    if (images.length === 0) {
-        console.warn('[Featured Swiper] No images found — initialising anyway');
-        initSwiper();
-        return;
-    }
-
-    Promise.all(
-        Array.from(images).map((img, i) => {
-            if (img.complete && img.naturalHeight !== 0) {
-                // console.log(`[Featured Swiper] Image ${i} already loaded`);
-                return Promise.resolve();
-            }
-
-            return new Promise((resolve) => {
-                img.addEventListener('load', () => {
-                    // console.log(`[Featured Swiper] Image ${i} loaded`);
-                    resolve();
-                }, { once: true });
-
-                img.addEventListener('error', () => {
-                    // console.warn(`[Featured Swiper] Image ${i} failed to load`);
-                    resolve(); // still resolve to avoid stalling
-                }, { once: true });
-            });
-        })
-    ).then(() => {
-        // console.log('[Featured Swiper] All images loaded — initialising Swiper');
-        initSwiper();
-    });
-
-    function initSwiper() {
-        // console.log('[Featured Swiper] Calling new Swiper()');
-
-        const featuredSwiper = new Swiper('.featuredSwiper', {
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" nitro-exclude></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        new Splide('.featuredSplide', {
+            type: 'loop',
             autoplay: true,
-            slidesPerView: 2,
-            spaceBetween: 10,
-            loop: false,
-            lazyPreloadPrevNext: 2,
+            perPage: 2,
+            gap: '10px',
+			arrows: false,
+			pagination: false,
             breakpoints: {
                 576: {
-                    slidesPerView: 3,
-                    spaceBetween: 20
+                    perPage: 3,
+                    gap: '20px',
                 },
                 768: {
-                    slidesPerView: 4,
-                    spaceBetween: 20
+                    perPage: 4,
+                    gap: '20px',
                 },
                 992: {
-                    slidesPerView: 5,
-                    spaceBetween: 20
-                }
-            }
-        });
-
-		container.classList.remove('is-loading');
-	    container.classList.add('is-ready');
-
-        // console.log('[Featured Swiper] Swiper instance:', featuredSwiper);
-    }
-});
+                    perPage: 5,
+                    gap: '20px',
+                },
+            },
+        }).mount();
+    });
 </script>
-    	<?php
-	},
-	9999
+        <?php
+    },
+    9999
 );

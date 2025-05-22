@@ -1,0 +1,23 @@
+{
+    "key": "group_cb_tp_widget",
+    "title": "CB TP Widget",
+    "fields": [
+        {
+            "key": "field_cb_tp_widget_title",
+            "label": "CB TP Widget",
+            "name": "title",
+            "type": "message"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/cb-tp-widget"
+            }
+        ]
+    ],
+    "active": 1,
+    "description": ""
+}

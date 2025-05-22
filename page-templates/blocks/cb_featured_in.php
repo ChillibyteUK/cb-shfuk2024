@@ -35,7 +35,7 @@ add_action(
     	?>
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" nitro-exclude></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
-<script>
+<script nitro-exclude>
     document.addEventListener('DOMContentLoaded', function () {
         new Splide('.featuredSplide', {
             type: 'loop',

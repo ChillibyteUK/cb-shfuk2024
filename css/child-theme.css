@@ -21177,10 +21177,25 @@ footer .colophon {
   color: var(--col-blue-400);
 }
 .steps img {
-  width: 150px;
+  width: 80px;
   display: block;
   margin-inline: auto;
   margin-bottom: 1rem;
+}
+@media (min-width: 768px) {
+  .steps img {
+    width: 100px;
+  }
+}
+@media (min-width: 992px) {
+  .steps img {
+    width: 120px;
+  }
+}
+@media (min-width: 1200px) {
+  .steps img {
+    width: 150px;
+  }
 }
 .steps .first-letter {
   color: var(--col-blue-400);

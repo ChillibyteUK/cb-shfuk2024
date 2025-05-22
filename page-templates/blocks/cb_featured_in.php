@@ -40,22 +40,19 @@ add_action(
         new Splide('.featuredSplide', {
             type: 'loop',
             autoplay: true,
-            perPage: 2,
-            gap: '10px',
+            perPage: 5,
+            gap: '20px',
 			arrows: false,
 			pagination: false,
             breakpoints: {
+				992: {
+					perPage: 4,
+				},
+				768: {
+					perPage: 3,
+				},
                 576: {
-                    perPage: 3,
-                    gap: '20px',
-                },
-                768: {
-                    perPage: 4,
-                    gap: '20px',
-                },
-                992: {
-                    perPage: 5,
-                    gap: '20px',
+                    perPage: 2,
                 },
             },
         }).mount();

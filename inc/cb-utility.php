@@ -498,7 +498,7 @@ function display_post_list() {
     $output = '';
 
     if (!empty($posts)) {
-        $output = '<ul><li><a href="' . get_site_url() . '"/blog/">Property Blog</a><ul>';
+        $output = '<ul><li><a href="' . esc_url( get_site_url() . '/blog/' ) . '">Property Blog</a><ul>';
         foreach ($posts as $post) {
             $output .= '<li><a href="' . get_permalink($post->ID) . '">' . $post->post_title . '</a></li>';
         }

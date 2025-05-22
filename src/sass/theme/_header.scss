@@ -6,9 +6,9 @@ header:not(main header) {
     z-index: 9999;
     transition: transform var(--transition);
 
-    &.hidden {
-        transform: translateY(-100%);
-    }
+    // &.hidden {
+    //     transform: translateY(-100%);
+    // }
 
     .nav-link {
         font-weight: var(--fw-600);

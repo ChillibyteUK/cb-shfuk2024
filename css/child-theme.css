@@ -20896,9 +20896,6 @@ header:not(main header) {
   z-index: 9999;
   transition: transform var(--transition);
 }
-header:not(main header).hidden {
-  transform: translateY(-100%);
-}
 header:not(main header) .nav-link {
   font-weight: var(--fw-600);
   font-size: var(--fs-400);

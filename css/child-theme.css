@@ -21144,12 +21144,17 @@ footer .colophon {
   }
 }
 .three_col_usp__item {
-  display: grid;
-  grid-template-columns: 20px 1fr;
-  align-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0.75rem;
 }
 @media (min-width: 576px) {
   .three_col_usp__item {
+    display: grid;
+    gap: 0;
+    grid-template-columns: 20px 1fr;
+    align-content: center;
     grid-template-columns: 1fr;
     align-content: start;
     text-align: center;

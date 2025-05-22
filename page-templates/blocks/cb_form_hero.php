@@ -6,7 +6,7 @@ $unique_id = random_str( 4 );
         <?php
         if ( get_field( 'pre_title' ) ?? null ) {
             ?>
-        <h1 class="h3 mb-0 font-weight-medium"><?= wp_kses_post( get_field( 'pre_title' ) ); ?></h1>
+        <h1 class="h3 mb-2 font-weight-medium"><?= wp_kses_post( get_field( 'pre_title' ) ); ?></h1>
         <h2 class="h1"><?= wp_kses_post( get_field( 'title' ) ); ?></h2>
 			<?php
         } else {

@@ -20890,7 +20890,8 @@ h1 > span, .h1 > span {
 }
 
 header:not(main header) {
-  background-color: var(--col-yellow-400);
+  background-color: var(--col-white);
+  border-bottom: 4px solid var(--col-yellow-400);
   position: fixed;
   width: 100%;
   z-index: 9999;
@@ -20908,7 +20909,7 @@ header:not(main header) .dropdown-toggle {
 header:not(main header) .dropdown-toggle::after {
   content: "";
   border: none;
-  background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_2' data-name='Layer 2' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.67 7.33'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B fill: %230073ca; stroke-width: 0px; %7D %3C/style%3E%3C/defs%3E%3Cg id='NAV_BAR' data-name='NAV BAR'%3E%3Cpolygon class='cls-1' points='9.49 0 7.33 2.16 5.18 0 0 0 7.33 7.33 14.67 0 9.49 0'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_2' data-name='Layer 2' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.67 7.33'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B fill: %23FFE41F; stroke-width: 0px; %7D %3C/style%3E%3C/defs%3E%3Cg id='NAV_BAR' data-name='NAV BAR'%3E%3Cpolygon class='cls-1' points='9.49 0 7.33 2.16 5.18 0 0 0 7.33 7.33 14.67 0 9.49 0'/%3E%3C/g%3E%3C/svg%3E");
   width: 15px;
   height: 7px;
   background-size: contain;

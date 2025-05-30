@@ -11,7 +11,7 @@ import Tab from 'bootstrap/js/dist/tab'
 import Toast from 'bootstrap/js/dist/toast'
 // import Tooltip from 'bootstrap/js/dist/tooltip'
 
-export {
+const bootstrap = {
 	Alert,
 	Button,
 	// Carousel,
@@ -24,4 +24,6 @@ export {
 	Tab,
 	Toast,
 	// Tooltip
-}
+};
+
+window.bootstrap = bootstrap;

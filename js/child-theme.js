@@ -3,11 +3,10 @@
   * Copyright 2013-2025 The Understrap Authors (https://github.com/understrap/understrap/graphs/contributors)
   * Licensed under GPL-3.0 (undefined)
   */
-(function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-	typeof define === 'function' && define.amd ? define(['exports'], factory) :
-	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.understrap = {}));
-})(this, (function (exports) { 'use strict';
+(function (factory) {
+	typeof define === 'function' && define.amd ? define(factory) :
+	factory();
+})((function () { 'use strict';
 
 	var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -40,7 +39,7 @@
 	}
 
 	var alertExports = {};
-	var alert$1 = {
+	var alert = {
 	  get exports(){ return alertExports; },
 	  set exports(v){ alertExports = v; },
 	};
@@ -1168,12 +1167,12 @@
 		  index_js.defineJQueryPlugin(Alert);
 		  return Alert;
 		});
-	} (alert$1));
+	} (alert));
 
-	var alert = alertExports;
+	var Alert = alertExports;
 
 	var buttonExports = {};
-	var button$1 = {
+	var button = {
 	  get exports(){ return buttonExports; },
 	  set exports(v){ buttonExports = v; },
 	};
@@ -1252,12 +1251,12 @@
 		  index_js.defineJQueryPlugin(Button);
 		  return Button;
 		});
-	} (button$1));
+	} (button));
 
-	var button = buttonExports;
+	var Button = buttonExports;
 
 	var collapseExports = {};
-	var collapse$1 = {
+	var collapse = {
 	  get exports(){ return collapseExports; },
 	  set exports(v){ collapseExports = v; },
 	};
@@ -1506,12 +1505,12 @@
 		  index_js.defineJQueryPlugin(Collapse);
 		  return Collapse;
 		});
-	} (collapse$1));
+	} (collapse));
 
-	var collapse = collapseExports;
+	var Collapse = collapseExports;
 
 	var dropdownExports = {};
-	var dropdown$1 = {
+	var dropdown = {
 	  get exports(){ return dropdownExports; },
 	  set exports(v){ dropdownExports = v; },
 	};
@@ -3584,12 +3583,12 @@
 		  index_js.defineJQueryPlugin(Dropdown);
 		  return Dropdown;
 		});
-	} (dropdown$1));
+	} (dropdown));
 
-	var dropdown = dropdownExports;
+	var Dropdown = dropdownExports;
 
 	var modalExports = {};
-	var modal$1 = {
+	var modal = {
 	  get exports(){ return modalExports; },
 	  set exports(v){ modalExports = v; },
 	};
@@ -4304,12 +4303,12 @@
 		  index_js.defineJQueryPlugin(Modal);
 		  return Modal;
 		});
-	} (modal$1));
+	} (modal));
 
-	var modal = modalExports;
+	var Modal = modalExports;
 
 	var offcanvasExports = {};
-	var offcanvas$1 = {
+	var offcanvas = {
 	  get exports(){ return offcanvasExports; },
 	  set exports(v){ offcanvasExports = v; },
 	};
@@ -4555,12 +4554,12 @@
 		  index_js.defineJQueryPlugin(Offcanvas);
 		  return Offcanvas;
 		});
-	} (offcanvas$1));
+	} (offcanvas));
 
-	var offcanvas = offcanvasExports;
+	var Offcanvas = offcanvasExports;
 
 	var popoverExports = {};
-	var popover$1 = {
+	var popover = {
 	  get exports(){ return popoverExports; },
 	  set exports(v){ popoverExports = v; },
 	};
@@ -5504,12 +5503,12 @@
 		  index_js.defineJQueryPlugin(Popover);
 		  return Popover;
 		});
-	} (popover$1));
+	} (popover));
 
-	var popover = popoverExports;
+	var Popover = popoverExports;
 
 	var scrollspyExports = {};
-	var scrollspy$1 = {
+	var scrollspy = {
 	  get exports(){ return scrollspyExports; },
 	  set exports(v){ scrollspyExports = v; },
 	};
@@ -5784,12 +5783,12 @@
 		  index_js.defineJQueryPlugin(ScrollSpy);
 		  return ScrollSpy;
 		});
-	} (scrollspy$1));
+	} (scrollspy));
 
-	var scrollspy = scrollspyExports;
+	var Scrollspy = scrollspyExports;
 
 	var tabExports = {};
-	var tab$1 = {
+	var tab = {
 	  get exports(){ return tabExports; },
 	  set exports(v){ tabExports = v; },
 	};
@@ -6074,12 +6073,12 @@
 		  index_js.defineJQueryPlugin(Tab);
 		  return Tab;
 		});
-	} (tab$1));
+	} (tab));
 
-	var tab = tabExports;
+	var Tab = tabExports;
 
 	var toastExports = {};
-	var toast$1 = {
+	var toast = {
 	  get exports(){ return toastExports; },
 	  set exports(v){ toastExports = v; },
 	};
@@ -6278,9 +6277,27 @@
 		  index_js.defineJQueryPlugin(Toast);
 		  return Toast;
 		});
-	} (toast$1));
+	} (toast));
 
-	var toast = toastExports;
+	var Toast = toastExports;
+
+	// import Tooltip from 'bootstrap/js/dist/tooltip'
+
+	const bootstrap = {
+	  Alert,
+	  Button,
+	  // Carousel,
+	  Collapse,
+	  Dropdown,
+	  Modal,
+	  Offcanvas,
+	  Popover,
+	  Scrollspy,
+	  Tab,
+	  Toast
+	  // Tooltip
+	};
+	window.bootstrap = bootstrap;
 
 	/**
 	 * File skip-link-focus-fix.js.
@@ -6386,17 +6403,6 @@
 	    lastScrollTop = scrollTop;
 	  });
 	});
-
-	exports.Alert = alert;
-	exports.Button = button;
-	exports.Collapse = collapse;
-	exports.Dropdown = dropdown;
-	exports.Modal = modal;
-	exports.Offcanvas = offcanvas;
-	exports.Popover = popover;
-	exports.Scrollspy = scrollspy;
-	exports.Tab = tab;
-	exports.Toast = toast;
 
 }));
 //# sourceMappingURL=child-theme.js.map

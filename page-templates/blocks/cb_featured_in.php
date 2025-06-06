@@ -1,6 +1,6 @@
 <section class="featured_in py-4">
     <div class="container-xl featured_in__grid">
-		<div class="row justify-content-center">
+		<div class="row justify-content-center align-items-center text-center">
 		<?php
 		foreach ( get_field( 'featured_logos', 'options' ) as $l ) {
 			?>
@@ -11,8 +11,8 @@
 				'full',
 				false,
 				array(
-					'width'   => '305',
-					'height'  => '90',
+					'width'   => '190',
+					'height'  => '56',
 					'loading' => 'eager',
 				)
 			);

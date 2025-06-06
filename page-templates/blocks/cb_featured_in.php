@@ -14,6 +14,7 @@
 					'width'   => '190',
 					'height'  => '56',
 					'loading' => 'eager',
+					'style'   => 'max-width: 190px; max-height: 56px; width: 100%; height: auto;',
 				)
 			);
 			?>

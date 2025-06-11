@@ -1,8 +1,23 @@
 <?php
 
-function acf_blocks()
-{
-    if (function_exists('acf_register_block_type')) {
+function acf_blocks() {
+    if ( function_exists( 'acf_register_block_type' ) ) {
+
+        acf_register_block_type(
+			array(
+				'name'            => 'cb_selected_area_cta',
+				'title'           => 'CB Selected Area CTA',
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'page-templates/blocks/cb_selected_area_cta.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+				),
+			)
+		);
 
         acf_register_block_type(array(
             'name'                => 'cb_tp_widget', 

@@ -4,7 +4,7 @@
 		<?php
 		foreach ( get_field( 'featured_logos', 'options' ) as $l ) {
 			?>
-		<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 my-2">
+		<div class="col-6 col-sm-4 col-md-3 col-lg-2 my-2">
 			<?php
 			echo wp_get_attachment_image(
 				$l,

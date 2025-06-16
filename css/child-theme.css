@@ -20700,7 +20700,7 @@ readers do not read off random characters that represent icons */
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   --border-radius-sm: 0.5rem;
   --border-radius-lg: 1rem;
-  --h-top: 90px;
+  --h-top: 107px;
 }
 
 /* poppins-regular - latin */
@@ -22562,7 +22562,7 @@ footer .colophon {
 }
 .blog .sidebar-container {
   position: sticky;
-  top: 1rem;
+  top: var(--h-top);
 }
 .blog .sidebar {
   background-color: var(--col-yellow-400);

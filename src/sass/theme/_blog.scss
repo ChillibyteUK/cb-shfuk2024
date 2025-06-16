@@ -138,7 +138,7 @@
 
   .sidebar-container {
     position: sticky;
-    top: 1rem;
+    top: var(--h-top);
   }
   .sidebar {
     background-color: var(--col-yellow-400);

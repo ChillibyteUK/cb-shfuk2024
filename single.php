@@ -36,9 +36,9 @@ $img = get_the_post_thumbnail(get_the_ID(), 'full', array('class' => 'blog__imag
                 $count = estimate_reading_time_in_minutes( get_the_content(), 200, true, true );
                 ?>
                 <div class="fs-200 mb-4">
-                    <i class="fa-solid fa-user"></i> Jack Malnick |
-                    <i class="fa-solid fa-calendar-days"></i> <?= esc_html( get_the_date( 'j F, Y' ) ); ?> |
-                    <i class="fa-solid fa-hourglass"></i> <?= esc_html( $count ); ?>
+                    <i class="fa-solid fa-user has-blue-400-color"></i> Jack Malnick |
+                    <i class="fa-solid fa-calendar-days has-blue-400-color"></i> <?= esc_html( get_the_date( 'j F, Y' ) ); ?> |
+                    <i class="fa-solid fa-hourglass has-blue-400-color"></i> <?= esc_html( $count ); ?>
                 </div>
                 <?php
 

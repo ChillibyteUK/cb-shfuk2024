@@ -109,7 +109,7 @@ get_header();
                             <?= get_the_post_thumbnail( get_the_ID(), 'large', array( 'class' => 'news_card__image' ) ); ?>
                             <div class="news_card__inner">
                                 <h3><?= esc_html( get_the_title() ); ?></h3>
-                                <div class="news_card__meta">Posted by Jack Malnick | <?= get_the_date( 'j F, Y' ); ?></div>
+                                <!-- <div class="news_card__meta">Posted by Jack Malnick | <?= get_the_date( 'j F, Y' ); ?></div> -->
                                 <div class="news_card__read"><?= wp_kses_post( estimate_reading_time_in_minutes( get_the_content(), 200, true, true ) ); ?></div>
                                 <div class="news_card__excerpt"><?= wp_kses_post( wp_trim_words( get_the_content(), 30 ) ); ?></div>
                                 <div class="news_card__link">Read more</div>

@@ -35,6 +35,9 @@
   &__meta {
     font-size: var(--fs-200);
     margin-bottom: 0.5rem;
+    i {
+      color: var(--col-blue-400);
+    }
   }
   &__excerpt {
     font-size: var(--fs-300);

@@ -22469,6 +22469,9 @@ footer .colophon {
   font-size: var(--fs-200);
   margin-bottom: 0.5rem;
 }
+.news_card__meta i {
+  color: var(--col-blue-400);
+}
 .news_card__excerpt {
   font-size: var(--fs-300);
   margin-bottom: 1rem;

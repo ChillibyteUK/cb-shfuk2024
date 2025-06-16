@@ -22463,7 +22463,7 @@ footer .colophon {
 .news_card h3, .news_card .h3 {
   font-size: var(--fs-600);
   color: var(--col-blue-400);
-  margin-bottom: 0;
+  margin-bottom: 0.25rem;
 }
 .news_card__meta {
   font-size: var(--fs-200);

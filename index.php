@@ -102,6 +102,7 @@ get_header();
                     ++$count; // Increment the post counter.
                     $current_post = get_post( $result->ID );
                     setup_postdata( $current_post );
+                    $post = $current_post;
                     // Output post content.
                     ?>
                     <div class="col-md-4">

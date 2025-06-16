@@ -9,12 +9,12 @@ $img = get_the_post_thumbnail(get_the_ID(), 'full', array('class' => 'blog__imag
 <main id="main" class="blog">
     <?php
     $content = get_the_content();
-    $blocks = parse_blocks($content);
+    $blocks  = parse_blocks( $content );
     $sidebar = array();
     $after;
     ?>
     <div class="blog__image">
-        <?= get_the_post_thumbnail(get_the_id(), 'full') ?>
+        <?= get_the_post_thumbnail( get_the_id(), 'full' ); ?>
         <div class="overlay"></div>
     </div>
     <div class="blog__hero">
@@ -33,8 +33,8 @@ $img = get_the_post_thumbnail(get_the_ID(), 'full', array('class' => 'blog__imag
         <div class="row g-4 pb-4">
             <div class="col-lg-9 px-3 py-5 px-md-5">
                 <?php
-                $count = estimate_reading_time_in_minutes(get_the_content(), 200, true, true);
-                echo $count;
+                $count = estimate_reading_time_in_minutes( get_the_content(), 200, true, true );
+                echo '<div class="fs-200"><i>Estimated Reading Time ' . $count . '</i></div>';
 
                 foreach ($blocks as $block) {
                     if ($block['blockName'] == 'core/heading') {

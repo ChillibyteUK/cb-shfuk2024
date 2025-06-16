@@ -35,9 +35,9 @@ $img = get_the_post_thumbnail(get_the_ID(), 'full', array('class' => 'blog__imag
                 <?php
                 $count = estimate_reading_time_in_minutes( get_the_content(), 200, true, true );
                 ?>
-                <div class="fs-200 mb-4"><i>
+                <div class="fs-200 mb-4">
                     Posted by Jack Malnick | <?= esc_html( get_the_date( 'j F, Y' ) ); ?> | Estimated Reading Time '<?= esc_html( $count ); ?>
-                </i></div>
+                </div>
                 <?php
 
                 foreach ($blocks as $block) {

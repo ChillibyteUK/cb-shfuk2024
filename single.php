@@ -34,7 +34,11 @@ $img = get_the_post_thumbnail(get_the_ID(), 'full', array('class' => 'blog__imag
             <div class="col-lg-9 px-3 py-5 px-md-5">
                 <?php
                 $count = estimate_reading_time_in_minutes( get_the_content(), 200, true, true );
-                echo '<div class="fs-200"><i>Estimated Reading Time ' . $count . '</i></div>';
+                ?>
+                <div class="fs-200 mb-4"><i>
+                    Posted by Jack Malnick | <?= esc_html( get_the_date( 'j F, Y' ) ); ?> | Estimated Reading Time '<?= esc_html( $count ); ?>
+                </i></div>
+                <?php
 
                 foreach ($blocks as $block) {
                     if ($block['blockName'] == 'core/heading') {

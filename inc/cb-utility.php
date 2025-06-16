@@ -371,7 +371,7 @@ function estimate_reading_time_in_minutes($content = '', $words_per_minute = 300
     $minutes = ceil($words_count / $words_per_minute);
     
     if ($formatted) {
-        $minutes = '<p class="reading">Estimated reading time ' . $minutes . ' ' . pluralise($minutes, 'minute') . '</p>';
+        $minutes = $minutes . ' ' . pluralise($minutes, 'minute');
     }
 
     return $minutes;

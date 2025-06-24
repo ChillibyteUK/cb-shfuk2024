@@ -1,0 +1,23 @@
+{
+  "key": "group_cb_location_service_index",
+  "title": "CB Location Service Index",
+  "fields": [
+    {
+      "key": "field_cb_location_service_index_title",
+      "label": "CB Location Service Index",
+      "name": "title",
+      "type": "message"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-location-service-index"
+      }
+    ]
+  ],
+  "active": 1,
+  "description": ""
+}

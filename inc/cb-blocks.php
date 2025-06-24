@@ -3,6 +3,25 @@
 function acf_blocks() {
     if ( function_exists( 'acf_register_block_type' ) ) {
 
+		// INSERT NEW BLOCKS HERE.
+
+        acf_register_block_type(
+            array(
+                'name'            => 'cb_location_service_index',
+                'title'           => __( 'CB Location Service Index' ),
+                'category'        => 'layout',
+                'icon'            => 'cover-image',
+                'render_template' => 'page-templates/blocks/cb-location-service-index.php',
+                'mode'            => 'edit',
+                'supports'        => array(
+                    'mode'      => false,
+                    'anchor'    => true,
+                    'className' => true,
+                    'align'     => true,
+                ),
+            )
+        );
+
         acf_register_block_type(
 			array(
 				'name'            => 'cb_selected_area_cta',

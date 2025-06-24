@@ -31,8 +31,6 @@ add_action(
 	'wp_footer',
 	function () {
     	?>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script defer nitro-exclude>
     const reviewSwiper = new Swiper('.review_swiper', {
         autoplay: true,

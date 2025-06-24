@@ -1,5 +1,5 @@
 <!-- TrustBox script -->
-<script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+<script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async nitro-exclude></script>
 <!-- End TrustBox script -->
  <!-- TrustBox widget - Micro Star -->
 <div class="tp-widget">

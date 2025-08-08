@@ -126,6 +126,7 @@ defined('ABSPATH') || exit;
 <?php
     }
     ?>
+<?php echo get_field("schema"); ?>
 </head>
 
 <body <?php body_class(); ?>>

@@ -33,12 +33,12 @@ $bg = get_field('background') == 'Grey' ? 'py-5 bg-grey-400' : 'pt-5';
 				}
 				else {
 	                ?>
-            <a href="<?=$l['url']?>" class="services_nav__card">
+            <div class="services_nav__card">
                 <div class="services_nav__inner">
-                    <h3><?=get_sub_field('title')?></h3>
+                    <h3><a href="<?=$l['url']?>"><?=get_sub_field('title')?></a></h3>
                     <div><?=get_sub_field('content')?></div>
                 </div>
-			</a>
+			</div>
                 	<?php
 				}
             }

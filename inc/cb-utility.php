@@ -527,7 +527,45 @@ function disable_theme_editor() {
 }
 add_action('admin_menu', 'disable_theme_editor', 999);
 
+/**
+ * Ensure Gutenberg tables render with Bootstrap classes.
+ *
+ * Adds .table-responsive to the <figure> wrapper
+ * and .table.table-sm to the <table>.
+ *
+ * @param string $block_content The block content about to be appended.
+ * @param array  $block         The block object.
+ * @return string
+ */
+function cb_bootstrapify_tables( $block_content, $block ) {
+    if ( isset( $block['blockName'] ) && 'core/table' === $block['blockName'] ) {
+        // Add table-responsive to the <figure>
+        $block_content = preg_replace(
+            '/<figure([^>]*)class="([^"]*wp-block-table[^"]*)"/',
+            '<figure$1class="$2 table-responsive"',
+            $block_content
+        );
 
+        // Add table and table-sm to the <table>
+        $block_content = preg_replace(
+            '/<table([^>]*)class="([^"]*)"/',
+            '<table$1class="table table-sm $2"',
+            $block_content
+        );
+
+        // If no class attribute exists on <table>, inject it
+        if ( strpos( $block_content, '<table' ) !== false && strpos( $block_content, 'class=' ) === false ) {
+            $block_content = str_replace(
+                '<table',
+                '<table class="table table-sm"',
+                $block_content
+            );
+        }
+    }
+
+    return $block_content;
+}
+add_filter( 'render_block', 'cb_bootstrapify_tables', 10, 2 );
 
 // SESSIONS STUFF
 

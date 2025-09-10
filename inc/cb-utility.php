@@ -537,7 +537,7 @@ add_action('admin_menu', 'disable_theme_editor', 999);
  * @param array  $block         The block object.
  * @return string
  */
-function cb_bootstrapify_tables( $block_content, $block ) {
+function mytheme_bootstrapify_tables( $block_content, $block ) {
     if ( isset( $block['blockName'] ) && 'core/table' === $block['blockName'] ) {
         // Add table-responsive to the <figure>
         $block_content = preg_replace(
@@ -565,7 +565,7 @@ function cb_bootstrapify_tables( $block_content, $block ) {
 
     return $block_content;
 }
-add_filter( 'render_block', 'cb_bootstrapify_tables', 10, 2 );
+add_filter( 'render_block', 'mytheme_bootstrapify_tables', 10, 2 );
 
 // SESSIONS STUFF
 

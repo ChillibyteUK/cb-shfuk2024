@@ -69,7 +69,7 @@ function remove_draft_widget()
 }
 
 add_action( 'wp_head', function() {
-    if ( is_single( 4943 ) ) { ?>
+    if ( is_page( 4943 ) ) { ?>
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",
@@ -100,7 +100,7 @@ add_action( 'wp_head', function() {
           }
         }
         </script>
-    <?php } elseif ( is_single(5179) ) { ?>
+    <?php } elseif ( is_page(5179) ) { ?>
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",

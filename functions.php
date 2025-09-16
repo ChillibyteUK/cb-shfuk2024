@@ -67,3 +67,70 @@ function remove_draft_widget()
 {
     remove_meta_box('dashboard_quick_press', 'dashboard', 'side');
 }
+
+add_action( 'wp_head', function() {
+    if ( is_single( 4943 ) ) { ?>
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "@id": "https://sellhousefast.uk/locations/birmingham/#product",
+          "name": "Sell House in Birmingham",
+          "url": "https://sellhousefast.uk/locations/birmingham/",
+          "description": "Need to sell your home in Birmingham? We buy houses in any condition and close quickly. Get your free cash offer today to start your sale.",
+          "image": [
+            "https://sellhousefast.uk/wp-content/themes/cb-shfuk2024/img/sellhousefast-logo--dark.svg"
+          ],
+          "brand": {
+            "@type": "Brand",
+            "@id": "https://sellhousefast.uk/#brand",
+            "name": "Sell House Fast",
+            "logo": "https://sellhousefast.uk/wp-content/themes/cb-shfuk2024/img/sellhousefast-logo--dark.svg",
+            "sameAs": [
+              "https://sellhousefast.uk/"
+            ]
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "@id": "https://sellhousefast.uk/locations/birmingham/#aggregateRating",
+            "ratingValue": 4.8,
+            "bestRating": 5,
+            "worstRating": 1,
+            "ratingCount": 42
+          }
+        }
+        </script>
+    <?php } elseif ( is_single(5179) ) { ?>
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "@id": "https://sellhousefast.uk/locations/london/cash-house-buyers-london/#product",
+          "name": "Cash House Buyers London",
+          "url": "https://sellhousefast.uk/locations/london/cash-house-buyers-london/",
+          "description": "Looking for cash house buyers in London? We buy houses fast for cash regardless of condition. Get a cash offer now and sell in your timeframe.",
+          "image": [
+            "https://sellhousefast.uk/wp-content/themes/cb-shfuk2024/img/sellhousefast-logo--dark.svg"
+          ],
+          "brand": {
+            "@type": "Brand",
+            "@id": "https://sellhousefast.uk/#brand",
+            "name": "Sell House Fast",
+            "logo": "https://sellhousefast.uk/wp-content/themes/cb-shfuk2024/img/sellhousefast-logo--dark.svg",
+            "sameAs": [
+              "https://sellhousefast.uk/"
+            ]
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "@id": "https://sellhousefast.uk/locations/london/cash-house-buyers-london/#aggregateRating",
+            "ratingValue": 4.8,
+            "bestRating": 5,
+            "worstRating": 1,
+            "ratingCount": 42
+          }
+        }
+        </script>
+    <?php
+    }
+});

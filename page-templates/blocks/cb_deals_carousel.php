@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) || exit;
                 while ( $deals->have_posts() ) {
                     $deals->the_post();
                     $deal      = get_the_title();
-                    $slug      = sanitize_title( $title );
+                    $slug      = sanitize_title( $deal );
                     $deal_link = esc_url( '/deals/#' . $slug );
                     ?>
                     <div class="swiper-slide">

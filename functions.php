@@ -71,15 +71,41 @@ function remove_draft_widget()
 add_action( 'wp_head', function() {
     if ( ! is_page() ) return;
 
-    global $post;
+    $HUB_ID = 4942; // Locations hub page ID
 
-    // Only run on children of page ID 4942
-    if ( (int) $post->post_parent !== 4942 ) return;
+    $post = get_queried_object();
+    if ( ! $post instanceof WP_Post ) return;
 
-    $url   = get_permalink( $post );
-    $title = get_the_title( $post );
+    // Is this page a descendant of the hub?
+    $ancestors = get_post_ancestors( $post );
+    $is_descendant = ($post->post_parent == $HUB_ID) || in_array( $HUB_ID, $ancestors, true );
+    if ( ! $is_descendant ) return;
 
-    // Get Yoast meta description if available
+    // Find the "location" page in the ancestor chain:
+    // - If this page is a direct child of HUB_ID, the location is this page
+    // - Otherwise, pick the ancestor whose parent is HUB_ID (the first-level child under the hub)
+    $location_post_id = 0;
+    if ( (int) $post->post_parent === $HUB_ID ) {
+        $location_post_id = $post->ID;
+    } else {
+        foreach ( $ancestors as $ancestor_id ) {
+            $parent_id = (int) get_post_field( 'post_parent', $ancestor_id );
+            if ( $parent_id === $HUB_ID ) {
+                $location_post_id = (int) $ancestor_id;
+                break;
+            }
+        }
+        // Fallback: if not found for some reason, use current post
+        if ( ! $location_post_id ) {
+            $location_post_id = $post->ID;
+        }
+    }
+
+    $location_name = get_the_title( $location_post_id );
+    $url           = get_permalink( $post );
+    $title_name    = $location_name ? "Sell House in {$location_name}" : 'Sell House';
+
+    // Yoast meta description (fallback to excerpt)
     $description = '';
     if ( class_exists( 'WPSEO_Meta' ) ) {
         $description = WPSEO_Meta::get_value( 'metadesc', $post->ID );
@@ -92,7 +118,7 @@ add_action( 'wp_head', function() {
         "@context" => "https://schema.org",
         "@type"    => "Product",
         "@id"      => trailingslashit( $url ) . "#product",
-        "name"     => "Sell House in " . $title,
+        "name"     => $title_name,
         "url"      => $url,
         "description" => $description,
         "image"    => [
@@ -117,7 +143,7 @@ add_action( 'wp_head', function() {
         ]
     ];
 
-    echo '<script type="application/ld+json">' . 
-         wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT ) . 
+    echo '<script type="application/ld+json">' .
+         wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT ) .
          '</script>';
 }, 20 );

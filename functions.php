@@ -69,121 +69,88 @@ function remove_draft_widget()
 }
 
 /**
- * JSON-LD Product schema for Locations pages and descendants.
- * Chooses template by matching keywords in the page slug/title.
+ * JSON-LD Product schema for Locations pages and their subpages.
+ * - Fires on any page that has ancestor ID 4942 (Locations hub)
+ * - Chooses one of 5 templates based on the current page slug
+ * - Uses the `location` taxonomy term NAME for "LOCATION" parts (not the page title)
+ * - Uses Yoast meta description if available, otherwise a sensible fallback per template
  */
 add_action('wp_head', function () {
-    if ( ! is_page() ) {
-        return;
+    if (!is_page()) return;
+
+    global $post;
+    if (!$post) return;
+
+    // 4942 is your top-level "Locations" page
+    if (!cb_page_has_ancestor((int) $post->ID, 4942)) return;
+
+    // --- Get location name from taxonomy (preferred) ---
+    $locName = cb_get_location_name($post->ID);
+    if (!$locName) {
+        // Fallback: try last word of the title, as a last resort
+        $locName = preg_replace('/^.*\b([A-Za-z\p{L}\-\' ]+)\s*$/u', '$1', get_the_title($post));
+        $locName = trim($locName);
     }
 
-    $HUB_ID = 4942; // Locations page ID
+    // Current URL (+ anchors for @id)
+    $url = get_permalink($post);
+    if (!$url) return;
 
-    $post = get_queried_object();
-    if ( ! $post instanceof WP_Post ) {
-        return;
-    }
+    // Decide which schema "flavour" to emit based on slug
+    $slug = $post->post_name;
 
-    // Ensure this page is the hub, a child of it, or any descendant of it.
-    $ancestors    = get_post_ancestors( $post );
-    $is_descendant = ($post->post_parent == $HUB_ID) || in_array( $HUB_ID, $ancestors, true ) || ($post->ID == $HUB_ID);
-    if ( ! $is_descendant ) {
-        return;
-    }
-
-    /**
-     * Resolve the LOCATION name:
-     *  - If this page is a direct child of HUB_ID, location = this page title.
-     *  - Else find the ancestor whose parent is HUB_ID (the first-level child).
-     *  - Fallback to current page title.
-     */
-    $location_post_id = 0;
-    if ( (int) $post->post_parent === $HUB_ID ) {
-        $location_post_id = $post->ID;
-    } else {
-        foreach ( $ancestors as $ancestor_id ) {
-            $parent_id = (int) get_post_field( 'post_parent', $ancestor_id );
-            if ( $parent_id === $HUB_ID ) {
-                $location_post_id = (int) $ancestor_id;
-                break;
-            }
-        }
-        if ( ! $location_post_id ) {
-            $location_post_id = $post->ID;
-        }
-    }
-    $LOCATION = trim( get_the_title( $location_post_id ) );
-
-    // Choose template by keyword in slug or title (case-insensitive).
-    $slug  = sanitize_title( $post->post_name ?: $post->post_title );
-    $title = strtolower( (string) $post->post_title );
-
-    $key = 'core';
-    $checks = [
-        'cash-house-buyers'      => ['cash-house-buyers'],
-        'sell-house-fast'        => ['sell-house-fast'],
-        'sell-flat-fast'         => ['sell-flat-fast'],
-        'sell-tenanted-property' => ['sell-tenanted-property'],
-    ];
-    foreach ( $checks as $tpl => $needles ) {
-        foreach ( $needles as $needle ) {
-            if ( strpos( $slug, $needle ) !== false || strpos( $title, $needle ) !== false ) {
-                $key = $tpl;
-                break 2;
-            }
-        }
-    }
-
-    // Template definitions: name & default description strings.
+    // Map of matcher => schema text parts (only name template differs; URL/@id use the real permalink)
     $templates = [
-        'core' => [
-            'name_fmt' => 'Sell House in LOCATION',
-            'desc'     => 'Need to sell your home in LOCATION? We buy houses in any condition and close quickly. Get your free cash offer today to start your sale.',
+        'cash-house-buyers'      => [
+            'name_tmpl' => 'Cash House Buyers %s',
+            'desc_fallback' => 'Looking for cash house buyers in %1$s? We buy houses fast for cash regardless of condition. Get a cash offer now and sell in your timeframe.',
         ],
-        'cash-house-buyers' => [
-            'name_fmt' => 'Cash House Buyers LOCATION',
-            'desc'     => 'Looking for cash house buyers in LOCATION? We buy houses fast for cash regardless of condition. Get a cash offer now and sell in your timeframe.',
+        'sell-house-fast'       => [
+            'name_tmpl' => 'Sell House Fast %s',
+            'desc_fallback' => 'Thinking of selling your %1$s house fast? Sell House Fast offers quick cash sales. Get a free offer and sell your house quickly!',
         ],
-        'sell-house-fast' => [
-            'name_fmt' => 'Sell House Fast LOCATION',
-            'desc'     => 'Thinking of selling your LOCATION house fast? Sell House Fast offers quick cash sales. Get a free offer and sell your house quickly!',
+        'sell-flat-fast'        => [
+            'name_tmpl' => 'Sell Flat Fast %s',
+            'desc_fallback' => 'Sell your %1$s flat fast for cash directly to Sell House Fast. Skip the listing hassle and get a quick offer!',
         ],
-        'sell-flat-fast' => [
-            'name_fmt' => 'Sell Flat Fast LOCATION',
-            'desc'     => 'Sell your LOCATION flat fast for cash directly to Sell House Fast. Skip the listing hassle and get a quick offer!',
+        'sell-tenanted-property'=> [
+            'name_tmpl' => 'Sell Tenanted Property %s',
+            'desc_fallback' => 'Thinking of selling your %1$s property with tenants? Sell House Fast makes it easy. Get a free offer and sell fast!',
         ],
-        'sell-tenanted-property' => [
-            'name_fmt' => 'Sell Tenanted Property LOCATION',
-            'desc'     => 'Thinking of selling your LOCATION property with tenants? Sell House Fast makes it easy. Get a free offer and sell fast!',
+        // default = standard location page
+        '_default'              => [
+            'name_tmpl' => 'Sell House in %s',
+            'desc_fallback' => 'Need to sell your home in %1$s? We buy houses in any condition and close quickly. Get your free cash offer today to start your sale.',
         ],
     ];
 
-    $tpl = $templates[ $key ];
-
-    // Build name with LOCATION token replaced.
-    $product_name = str_replace( 'LOCATION', $LOCATION, $tpl['name_fmt'] );
-
-    // Prefer Yoast meta description; else template default (with LOCATION substituted).
-    $description = '';
-    if ( class_exists( 'WPSEO_Meta' ) ) {
-        $description = (string) WPSEO_Meta::get_value( 'metadesc', $post->ID );
-    }
-    if ( '' === trim( $description ) ) {
-        $description = str_replace( 'LOCATION', $LOCATION, $tpl['desc'] );
+    // Pick template by slug contains
+    $key = '_default';
+    foreach (['cash-house-buyers','sell-house-fast','sell-flat-fast','sell-tenanted-property'] as $needle) {
+        if (stripos($slug, $needle) !== false) { $key = $needle; break; }
     }
 
-    $url = get_permalink( $post );
-    if ( ! $url ) {
-        return;
+    $tmpl = $templates[$key];
+    $name = sprintf($tmpl['name_tmpl'], $locName);
+
+    // Yoast meta description if present, else fallback for the selected flavour
+    $desc = '';
+    if (function_exists('wpseo_replace_vars')) {
+        // Try to pull Yoast's stored meta description first
+        $yoast_desc = get_post_meta($post->ID, '_yoast_wpseo_metadesc', true);
+        if ($yoast_desc) $desc = wpseo_replace_vars($yoast_desc, $post);
+    }
+    if ($desc === '' || $desc === null) {
+        $desc = sprintf($tmpl['desc_fallback'], $locName);
     }
 
-    $schema = [
+    $json = [
         '@context' => 'https://schema.org',
         '@type'    => 'Product',
-        '@id'      => trailingslashit( $url ) . '#product',
-        'name'     => $product_name,
+        '@id'      => rtrim($url, '/') . '#product',
+        'name'     => $name,
         'url'      => $url,
-        'description' => $description,
+        'description' => $desc,
         'image'    => [
             'https://sellhousefast.uk/wp-content/themes/cb-shfuk2024/img/sellhousefast-logo--dark.svg',
         ],
@@ -192,11 +159,11 @@ add_action('wp_head', function () {
             '@id'   => 'https://sellhousefast.uk/#brand',
             'name'  => 'Sell House Fast',
             'logo'  => 'https://sellhousefast.uk/wp-content/themes/cb-shfuk2024/img/sellhousefast-logo--dark.svg',
-            'sameAs' => ['https://sellhousefast.uk/'],
+            'sameAs'=> ['https://sellhousefast.uk/'],
         ],
         'aggregateRating' => [
-            '@type'       => 'AggregateRating',
-            '@id'         => trailingslashit( $url ) . '#aggregateRating',
+            '@type' => 'AggregateRating',
+            '@id'   => rtrim($url, '/') . '#aggregateRating',
             'ratingValue' => 4.8,
             'bestRating'  => 5,
             'worstRating' => 1,
@@ -204,7 +171,25 @@ add_action('wp_head', function () {
         ],
     ];
 
-    echo '<script type="application/ld+json">' .
-         wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT ) .
-         '</script>';
+    echo "\n<script type=\"application/ld+json\">" . wp_json_encode($json, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "</script>\n";
 }, 20);
+
+/**
+ * Helper: does $pageId have ancestor $ancestorId?
+ */
+function cb_page_has_ancestor(int $pageId, int $ancestorId): bool {
+    $anc = get_post_ancestors($pageId);
+    return in_array($ancestorId, array_map('intval', $anc), true);
+}
+
+/**
+ * Helper: get the Location taxonomy term NAME for a page.
+ * Returns empty string if not found.
+ */
+function cb_get_location_name(int $postId): string {
+    $terms = get_the_terms($postId, 'location');
+    if (is_wp_error($terms) || empty($terms)) return '';
+    // If multiple, use the first one
+    $term = array_shift($terms);
+    return is_object($term) ? trim($term->name) : '';
+}

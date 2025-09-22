@@ -69,60 +69,55 @@ function remove_draft_widget()
 }
 
 add_action( 'wp_head', function() {
-    if ( is_page(4943) ) {
-        echo '<script type="application/ld+json">' . json_encode([
-            "@context" => "https://schema.org",
-            "@type" => "Product",
-            "@id" => "https://sellhousefast.uk/locations/birmingham/#product",
-            "name" => "Sell House in Birmingham",
-            "url" => "https://sellhousefast.uk/locations/birmingham/",
-            "description" => "Need to sell your home in Birmingham? We buy houses in any condition and close quickly. Get your free cash offer today to start your sale.",
-            "image" => [
-                "https://sellhousefast.uk/wp-content/themes/cb-shfuk2024/img/sellhousefast-logo--dark.svg"
-            ],
-            "brand" => [
-                "@type" => "Brand",
-                "@id" => "https://sellhousefast.uk/#brand",
-                "name" => "Sell House Fast",
-                "logo" => "https://sellhousefast.uk/wp-content/themes/cb-shfuk2024/img/sellhousefast-logo--dark.svg",
-                "sameAs" => ["https://sellhousefast.uk/"]
-            ],
-            "aggregateRating" => [
-                "@type" => "AggregateRating",
-                "@id" => "https://sellhousefast.uk/locations/birmingham/#aggregateRating",
-                "ratingValue" => 4.8,
-                "bestRating" => 5,
-                "worstRating" => 1,
-                "ratingCount" => 42
-            ]
-        ], JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT) . '</script>';
+    if ( ! is_page() ) return;
+
+    global $post;
+
+    // Only run on children of page ID 4942
+    if ( (int) $post->post_parent !== 4942 ) return;
+
+    $url   = get_permalink( $post );
+    $title = get_the_title( $post );
+
+    // Get Yoast meta description if available
+    $description = '';
+    if ( class_exists( 'WPSEO_Meta' ) ) {
+        $description = WPSEO_Meta::get_value( 'metadesc', $post->ID );
     }
-    elseif ( is_page(5179) ) {
-        echo '<script type="application/ld+json">' . json_encode([
-            "@context" => "https://schema.org",
-            "@type" => "Product",
-            "@id" => "https://sellhousefast.uk/locations/london/cash-house-buyers-london/#product",
-            "name" => "Cash House Buyers London",
-            "url" => "https://sellhousefast.uk/locations/london/cash-house-buyers-london/",
-            "description" => "Looking for cash house buyers in London? We buy houses fast for cash regardless of condition. Get a cash offer now and sell in your timeframe.",
-            "image" => [
-                "https://sellhousefast.uk/wp-content/themes/cb-shfuk2024/img/sellhousefast-logo--dark.svg"
-            ],
-            "brand" => [
-                "@type" => "Brand",
-                "@id" => "https://sellhousefast.uk/#brand",
-                "name" => "Sell House Fast",
-                "logo" => "https://sellhousefast.uk/wp-content/themes/cb-shfuk2024/img/sellhousefast-logo--dark.svg",
-                "sameAs" => ["https://sellhousefast.uk/"]
-            ],
-            "aggregateRating" => [
-                "@type" => "AggregateRating",
-                "@id" => "https://sellhousefast.uk/locations/london/cash-house-buyers-london/#aggregateRating",
-                "ratingValue" => 4.8,
-                "bestRating" => 5,
-                "worstRating" => 1,
-                "ratingCount" => 42
-            ]
-        ], JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT) . '</script>';
+    if ( ! $description ) {
+        $description = wp_strip_all_tags( get_the_excerpt( $post ) );
     }
-});
+
+    $schema = [
+        "@context" => "https://schema.org",
+        "@type"    => "Product",
+        "@id"      => trailingslashit( $url ) . "#product",
+        "name"     => "Sell House in " . $title,
+        "url"      => $url,
+        "description" => $description,
+        "image"    => [
+            "https://sellhousefast.uk/wp-content/themes/cb-shfuk2024/img/sellhousefast-logo--dark.svg"
+        ],
+        "brand" => [
+            "@type" => "Brand",
+            "@id"   => "https://sellhousefast.uk/#brand",
+            "name"  => "Sell House Fast",
+            "logo"  => "https://sellhousefast.uk/wp-content/themes/cb-shfuk2024/img/sellhousefast-logo--dark.svg",
+            "sameAs" => [
+                "https://sellhousefast.uk/"
+            ]
+        ],
+        "aggregateRating" => [
+            "@type"       => "AggregateRating",
+            "@id"         => trailingslashit( $url ) . "#aggregateRating",
+            "ratingValue" => 4.8,
+            "bestRating"  => 5,
+            "worstRating" => 1,
+            "ratingCount" => 42
+        ]
+    ];
+
+    echo '<script type="application/ld+json">' . 
+         wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT ) . 
+         '</script>';
+}, 20 );

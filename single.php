@@ -59,7 +59,7 @@ $img = get_the_post_thumbnail( get_the_ID(), 'full', array( 'class' => 'blog__im
                         }
                     }
 
-                    echo wp_kses_post( apply_filters( 'the_content', render_block( $block ) ) );
+                    echo apply_filters( 'the_content', render_block( $block ) );
                 }
                 ?>
             </div>

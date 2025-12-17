@@ -55,6 +55,10 @@ $boroughs = array(
 				$borough_page = get_page_by_path( '/locations/london/sell-house-fast-' . $slug );
 				if ( $borough_page ) {
 					$borough_link = get_permalink( $borough_page->ID );
+					// make sure page is published.
+					if ( 'publish' !== get_post_status( $borough_page->ID ) ) {
+						continue;
+					}
 					?>
 					<a class="button" href="<?php echo esc_url( $borough_link ); ?>">
 						<?php echo esc_html( $name ); ?>

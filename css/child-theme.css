@@ -22472,6 +22472,12 @@ footer .colophon {
   padding-block: 1.7rem 1.5rem;
 }
 
+.borough_buttons__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
 .reading {
   font-size: var(--fs-200);
   font-style: italic;

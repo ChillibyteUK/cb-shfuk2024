@@ -22474,8 +22474,11 @@ footer .colophon {
 
 .borough-buttons__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
+  gap: 0.5rem;
+}
+.borough-buttons__grid .button {
+  text-align: center;
 }
 
 .reading {

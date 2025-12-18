@@ -1,7 +1,10 @@
 .borough-buttons {
     &__grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
+        gap: 0.5rem;
+        .button {
+            text-align: center;
+        }
     }
 }

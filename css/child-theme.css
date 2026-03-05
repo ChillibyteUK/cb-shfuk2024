@@ -22481,6 +22481,71 @@ footer .colophon {
   text-align: center;
 }
 
+.comparison-table__shell {
+  border: 1px solid var(--col-grey-600);
+  overflow: hidden;
+  background-color: var(--col-white);
+}
+.comparison-table__table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.comparison-table__th, .comparison-table__cell {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--col-grey-600);
+}
+.comparison-table__th {
+  font-size: var(--fs-400);
+  font-weight: var(--fw-700);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--col-blue-400);
+  background-color: var(--col-grey-400);
+}
+.comparison-table__th--term {
+  width: 38%;
+  background-color: var(--col-grey-400);
+}
+.comparison-table__th--competitor, .comparison-table__cell--competitor {
+  width: 31%;
+  background-color: var(--col-white);
+}
+.comparison-table__th--brand, .comparison-table__cell--brand {
+  width: 31%;
+  background-color: var(--col-blue-400);
+  color: var(--col-white);
+}
+.comparison-table__cell {
+  font-size: var(--fs-400);
+  color: var(--col-black);
+}
+.comparison-table__cell--term {
+  font-weight: var(--fw-600);
+  color: var(--col-black);
+  background-color: var(--col-grey-400);
+}
+.comparison-table__cell--brand {
+  font-weight: var(--fw-600);
+  color: var(--col-white);
+}
+.comparison-table__row:last-child .comparison-table__cell {
+  border-bottom: 0;
+}
+@media (max-width: 767px) {
+  .comparison-table__th, .comparison-table__cell {
+    padding: 0.75rem;
+    font-size: var(--fs-400);
+  }
+  .comparison-table__th--term, .comparison-table__cell--term {
+    width: 44%;
+  }
+  .comparison-table__th--competitor, .comparison-table__cell--competitor, .comparison-table__th--brand, .comparison-table__cell--brand {
+    width: 28%;
+  }
+}
+
 .reading {
   font-size: var(--fs-200);
   font-style: italic;

@@ -18,7 +18,7 @@ get_header();
     $sidebar = array();
     $after;
     ?>
-    <div class="blog__image" style="background-color: var(--blue-400);">
+    <div class="blog__image" style="background-color: var(--col-blue-400);">
         <div class="overlay"></div>
     </div>
     <div class="blog__hero">

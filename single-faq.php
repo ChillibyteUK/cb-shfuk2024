@@ -61,7 +61,7 @@ get_header();
 							if ( $q->have_posts() ) {
 								?>
 								<div class="recent">
-									<ul>
+									<ul style="list-style-type: square !important;">
 									<?php
 									while ( $q->have_posts() ) {
 										$q->the_post();

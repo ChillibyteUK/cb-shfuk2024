@@ -61,12 +61,12 @@ get_header();
 							if ( $q->have_posts() ) {
 								?>
 								<div class="recent">
-									<ul style="list-style-type: square !important;">
+									<ul>
 									<?php
 									while ( $q->have_posts() ) {
 										$q->the_post();
 										?>
-										<li><a href="<?= esc_url( get_the_permalink() ); ?>">
+										<li style="list-style-type: square !important;"><a href="<?= esc_url( get_the_permalink() ); ?>">
 											<?= esc_html( get_the_title() ); ?>
 										</a></li>
 										<?php

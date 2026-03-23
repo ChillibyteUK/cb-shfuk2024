@@ -61,16 +61,18 @@ get_header();
 							if ( $q->have_posts() ) {
 								?>
 								<div class="recent">
+									<ul>
 									<?php
 									while ( $q->have_posts() ) {
 										$q->the_post();
 										?>
-										<a class="recent__post" href="<?= esc_url( get_the_permalink() ); ?>">
-											<div class="recent__title"><?= esc_html( get_the_title() ); ?></div>
-										</a>
+										<li><a href="<?= esc_url( get_the_permalink() ); ?>">
+											<?= esc_html( get_the_title() ); ?>
+										</a></li>
 										<?php
 									}
 									?>
+									</ul>
 								</div>
 								<?php
 							}

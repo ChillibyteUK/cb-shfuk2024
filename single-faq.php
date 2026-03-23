@@ -37,42 +37,49 @@ get_header();
         <div class="row g-4 pb-4">
             <div class="col-lg-9 px-3 py-5 px-md-5">
                 <?php
-
                 foreach ( $blocks as $block ) {
-                    if ( 'core/heading' === $block['blockName'] ) {
-                        if ( ! array_key_exists( 'level', $block['attrs'] ) ) {
-                            $heading    = wp_strip_all_tags( $block['innerHTML'] );
-                            $section_id = sanitize_title( $heading );
-                            echo '<a id="' . esc_attr( $section_id ) . '" class="anchor"></a>';
-                            $sidebar[ $heading ] = $section_id;
-                        }
-                    }
-
                     echo apply_filters( 'the_content', render_block( $block ) );
                 }
                 ?>
             </div>
             <div class="col-lg-3 d-none d-lg-block">
                 <div class="sidebar-container">
-                    <?php
-                    if ( $sidebar ) {
-                    	?>
-                        <div class="sidebar">
-                            <div class="h5 d-none d-lg-block">Quick Links</div>
-                            <div class="h5 d-lg-none" data-bs-toggle="collapse" href="#links" role="button">Quick Links</div>
-                            <div class="collapse d-lg-block" id="links">
-                                <?php
-                                foreach ( $sidebar as $heading => $section_id ) {
-                                	?>
-                                    <li><a href="#<?= esc_attr( $section_id ); ?>"><?= esc_html( $heading ); ?></a></li>
-                                	<?php
-                                }
-                                ?>
-                            </div>
-                        </div>
-                    	<?php
-                    }
-                    ?>
+					<div class="sidebar">
+						<div class="h5 d-none d-lg-block">Related FAQs</div>
+						<div class="h5 d-lg-none" data-bs-toggle="collapse" href="#links" role="button">Quick Links</div>
+						<div class="collapse d-lg-block" id="links">
+							<?php
+							$q = new WP_Query(
+								array(
+									'post_type'      => 'faq',
+									'post_status'    => 'publish',
+									'posts_per_page' => 5,
+									'post__not_in'   => array( $post )
+								)
+							);
+
+							if ( $q->have_posts() ) {
+								?>
+								<div class="recent">
+									<?php
+									while ( $q->have_posts() ) {
+										$q->the_post();
+										?>
+										<a class="recent__post" href="<?= esc_url( get_the_permalink() ); ?>">
+											<div class="recent__title"><?= esc_html( get_the_title() ); ?></div>
+										</a>
+										<?php
+									}
+									?>
+								</div>
+								<?php
+							}
+
+							wp_reset_postdata();
+
+							?>
+						</div>
+					</div>
                     <div class="single_cta">
                         <input type="text" name="postcode" id="postcode" autocomplete="off" placeholder="Enter postcode"><button class="button button-sm">Get Your Free Offer</button>
                     </div>

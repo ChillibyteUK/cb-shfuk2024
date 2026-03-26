@@ -356,12 +356,21 @@ function filter_gform_max_async_feed_attempts( $max_attempts, $form, $entry, $ad
 }
 
 // Yoast is very badly written.
-add_filter( 'wpseo_breadcrumb_links', 'lc_fix_breadcrumb_home_label' );
-function lc_fix_breadcrumb_home_label( $links ) {
-    if ( isset( $links[0]['text'] ) ) {
-        $links[0]['text'] = 'SellHouseFast.uk';
+add_filter( 'wpseo_breadcrumb_single_link', 'cb_fix_home_breadcrumb_label', 10, 2 );
+function cb_fix_home_breadcrumb_label( $link_output, $breadcrumb ) {
+
+    // Only touch the homepage crumb
+    if ( ! empty( $breadcrumb['url'] ) && home_url( '/' ) === trailingslashit( $breadcrumb['url'] ) ) {
+
+        // Replace the anchor text regardless of what Yoast decided
+        $link_output = preg_replace(
+            '#>(.*?)</a>#',
+            '>Sell House Fast</a>',
+            $link_output
+        );
     }
-    return $links;
+
+    return $link_output;
 }
 
 ?>

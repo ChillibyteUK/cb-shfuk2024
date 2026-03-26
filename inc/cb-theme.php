@@ -355,4 +355,13 @@ function filter_gform_max_async_feed_attempts( $max_attempts, $form, $entry, $ad
     return $max_attempts;
 }
 
+// Yoast is very badly written.
+add_filter( 'wpseo_breadcrumb_links', 'lc_fix_breadcrumb_home_label' );
+function lc_fix_breadcrumb_home_label( $links ) {
+    if ( isset( $links[0]['text'] ) ) {
+        $links[0]['text'] = 'SellHouseFast.uk';
+    }
+    return $links;
+}
+
 ?>
